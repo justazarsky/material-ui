@@ -9,7 +9,7 @@ You can change the font family with the `theme.typography.fontFamily` property.
 For instance, this demo uses the system font instead of the default Roboto font:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
 
 セルフホストフォントを作成するには、`ttf`、`woff`、または`woff2`形式のフォントファイルをダウンロードし、コードに読み込みます。
 
-⚠️これには、ビルドプロセスに`ttf`、` woff ` 、および ` woff2 `の読み込みを処理できるプラグインまたはローダーが必要です。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。
+⚠️これには、ビルドプロセスに`ttf`、`woff` 、および `woff2`の読み込みを処理できるプラグインまたはローダーが必要です。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。 フォントはバンドルに*埋め込まれません*。 それらは、 CDNの代わりにWebサーバーからロードされます。
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -54,7 +54,7 @@ const raleway = {
 Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
@@ -78,12 +78,12 @@ return (
 
 ## フォントサイズ
 
-Material-UIでは、フォントサイズに`rem`単位を使用します。 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
+Material-UIでは、フォントサイズに`rem`単位を使用します。 ブラウザの`<html>`要素のデフォルトのフォントサイズは`16px`ですが、ブラウザにはこの値を変更するオプションがあります。そのため、`rem`単位を使用すると、ユーザーの設定に対応できるため、アクセシビリティのサポートが向上します。 ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
 
-Material-UIのフォントサイズを変更するには、` fontSize `プロパティを。 デフォルト値は` 14pxです` 。
+Material-UIのフォントサイズを変更するには、`fontSize`プロパティを指定します。 デフォルト値は `14px` です。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // In Chinese and Japanese the characters are usually larger,
     // so a smaller fontsize may be appropriate.
@@ -103,7 +103,7 @@ const theme = createMuiTheme({
 Typographyバリアント型プロパティは、生成されたCSSに直接マップされます。 [media queries](/customization/breakpoints/#api) を使用できます：
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.typography.h3 = {
   fontSize: '1.2rem',
@@ -125,9 +125,9 @@ theme.typography.h3 = {
 以下の例で実際にこれを見ることができます。 ブラウザのウィンドウサイズを調整し、幅が異なる[ブレークポイント](/customization/breakpoints/)を横切るときにフォントサイズがどのように変化するかを確認します。
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -141,12 +141,12 @@ theme = responsiveFontSizes(theme);
 
 `<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ フォントサイズを変えるとアクセシビリティに悪影響を及ぼす可能性があります ♿️ ほとんどのブラウザはデフォルトの16ピクセルのサイズで一致していますが、ユーザーはそれを変更することができます。 例えば、視力に障害のある人は、ブラウザのデフォルトフォントサイズをもっと大きなサイズに設定しているかもしれません。
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+このユースケースでは、`htmlFontSize`テーマプロパティが提供されており、`<html>`要素のフォントサイズが何であるかをMaterial-UIに伝えます。 これは、計算されたフォントサイズが常に仕様と一致するように、`rem`の値を調整するために使用されます。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     // Tell Material-UI what's the font-size on the html element is.
     htmlFontSize: 10,
@@ -166,7 +166,7 @@ html {
 
 ## バリアント
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+タイポグラフィオブジェクトは、デフォルトでは[13のバリアント](/components/typography/#component)を持っています。
 
 - h1
 - h2
@@ -185,7 +185,7 @@ The typography object comes with [13 variants](/components/typography/#component
 これらのバリアントは各々個別にカスタマイズ可能です。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     subtitle1: {
       fontSize: 12,
@@ -204,4 +204,4 @@ const theme = createMuiTheme({
 
 ## デフォルト値
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+タイポグラフィのデフォルト値を調べるには、[テーマエクスプローラ](/customization/default-theme/?expand-path=$.typography)を使うか、このページの開発ツールコンソール（`window.theme.typography`）を開くことで調べることができます。

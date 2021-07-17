@@ -4,7 +4,7 @@
 
 ## Official examples
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+[GitHubリポジトリ](https://github.com/mui-org/material-ui)の[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)フォルダにいくつかのサンプルプロジェクトを用意しています。
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -20,7 +20,7 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 ## 更に高度なサンプルプロジェクト
 
-If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) or:
+より完全で現実的な例から始めたい場合 [プレミアムテーマ & テンプレート](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) をご覧ください:
 
 ### Gratuit
 
@@ -30,7 +30,7 @@ If you want to start with a more complete and real-world example, you could take
   - 単一のCLIコマンドで新しいプロジェクトを開始するカスタムCreate React Appスクリプト
   - 公式のFirebase Web Auth UIを使用した認証を含むFirebase用のビルド
   - エラー処理（404）および遅延ロードを含むReact Routerによるルーティング
-  - All PWA features included (SW, Notifications, deferred installation prompt and more)
+  - すべてのPWA機能が含まれています（SW、通知、遅延インストールプロンプトなど）
   - 最適化されたスケーラブルなパフォーマンス（すべてLighthouseで最大100ポイント）
 - [RMUIF](https://github.com/phoqe/rmuif):
     

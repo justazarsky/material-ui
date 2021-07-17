@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import HiddenCss from './HiddenCss';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
+import { createTheme, MuiThemeProvider } from '../styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 const Foo = () => <div>bar</div>;
@@ -91,7 +91,7 @@ describe('<HiddenCss />', () => {
     });
 
     it('allows custom breakpoints', () => {
-      const theme = createMuiTheme({ breakpoints: { keys: ['xxl'] } });
+      const theme = createTheme({ breakpoints: { keys: ['xxl'] } });
       const wrapper = mount(
         <MuiThemeProvider theme={theme}>
           <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>

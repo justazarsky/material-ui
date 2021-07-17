@@ -13,21 +13,21 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 `TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。
 
-It supports standard, outlined and filled styling.
+Standard、Outlined、およびFilledのスタイルをサポートします。
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but Material-UI will continue to support it.
+**備考:** `TextField`の標準のスタイルは[Material Design guidelines](https://material.io/) に記載されなくなりましたが([理由はこちら](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03))、Material-UIでは引き続きサポートされます。
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+標準的なフォームの属性がサポートされています。(`required`, `disabled`, `type` など) 入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## バリデーション
 
-The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
+`error` プロパティでエラーの状態を切り替え、`helperText` プロパティでエラーについてのフィードバックを表示できます。
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
@@ -43,7 +43,7 @@ The `select` prop makes the text field use the [Select](/components/selects/) co
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## アイコン
+## Icons
 
 There are multiple ways to display an icon with a text field.
 
@@ -51,33 +51,33 @@ There are multiple ways to display an icon with a text field.
 
 ### 入力装飾 (Input Adornments)
 
-The main way is with an `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
+これを行う主な方法は `InputAdornment` です。 これは、入力に接頭辞、接尾辞、またはアクションを追加するために使用できます。 たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ## サイズ
 
-Fancy smaller inputs? `size`propを使用します。
+小さい入力欄が好きですか？ `size`プロパティを使用します。
 
 {{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
 ## レイアウト
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`margin` プロパティを使用して入力欄の垂直方向の間隔を変更することができます。 `none` (デフォルト) を使用すると、 `FormControl`に余白は適用されません。一方、 `dense` と `normal` では適用されます。 `dense` と `normal` は、仕様を満たすために他のスタイルを変更します。
 
-`fullWidth` can be used to make the input take up the full width of its container.
+`fullWidth` を使用すると、入力欄の幅がコンテナ一杯になります。
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
 ## Uncontrolled vs Controlled
 
-The component can be controlled or uncontrolled.
+制御されている(controlled)コンポーネントと制御されていない(uncontrolled)コンポーネントがあります。
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
 ## コンポーネント
 
-`TextField ` は小さなコンポーネントから構成されています。（ [`FormControl`](/api/form-control/)、 [`Input`](/api/input/)、 [`FilledInput`](/api/filled-input/)、 [`InputLabel`](/api/input-label/)、 [`OutlinedInput`](/api/outlined-input/)、 や [`FormHelperText`](/api/form-helper-text/)など ）また、フォーム入力を大幅にカスタマイズするために直接活用できます。
+`TextField` は小さなコンポーネントから構成されています。（ [`FormControl`](/api/form-control/)、 [`Input`](/api/input/)、 [`FilledInput`](/api/filled-input/)、 [`InputLabel`](/api/input-label/)、 [`OutlinedInput`](/api/outlined-input/)、 や [`FormHelperText`](/api/form-helper-text/)など ）また、フォーム入力を大幅にカスタマイズするために直接活用できます。
 
 いくつかのネイティブHTML入力プロパティが `TextField` コンポーネントにないことに気づいたかもしれません。 これは故意です。 コンポーネントは最も使用されているプロパティの面倒を見ます、そしてそれは以下のデモで示される基本的なコンポーネントを使うことはユーザー次第です。 それでも、あなたは使用することができます `inputProps` （及び `InputProps`、 `InputLabelProps` あなたには、いくつかの決まり文句を避けたい場合はプロパティ）。
 
@@ -89,7 +89,7 @@ The component can be controlled or uncontrolled.
 
 ## カラー
 
-The `color` prop changes the highlight color of the text field when focused.
+`color` プロパティは入力欄がフォーカスされた時のハイライト色を変更します。
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
@@ -103,7 +103,7 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field)を確認できます。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
 
 ## 制限事項
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { findOutermostIntrinsic, getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import describeConformance from '../test-utils/describeConformance';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import describeConformance from 'test/utils/describeConformance';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';
@@ -249,7 +249,7 @@ describe('<Drawer />', () => {
 
   describe('Right To Left', () => {
     it('should switch left and right anchor when theme is right-to-left', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         direction: 'rtl',
       });
       const wrapper1 = mount(

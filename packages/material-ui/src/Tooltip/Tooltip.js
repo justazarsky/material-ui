@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge, elementAcceptingRef } from '@material-ui/utils';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -24,51 +24,43 @@ function arrowGenerator() {
     '&[x-placement*="bottom"] $arrow': {
       top: 0,
       left: 0,
-      marginTop: '-1em',
+      marginTop: '-0.71em',
       marginLeft: 4,
       marginRight: 4,
-      width: '2em',
-      height: '1em',
       '&::before': {
-        borderWidth: '0 1em 1em 1em',
-        borderColor: 'transparent transparent currentcolor transparent',
+        transformOrigin: '0 100%',
       },
     },
     '&[x-placement*="top"] $arrow': {
       bottom: 0,
       left: 0,
-      marginBottom: '-1em',
+      marginBottom: '-0.71em',
       marginLeft: 4,
       marginRight: 4,
-      width: '2em',
-      height: '1em',
       '&::before': {
-        borderWidth: '1em 1em 0 1em',
-        borderColor: 'currentcolor transparent transparent transparent',
+        transformOrigin: '100% 0',
       },
     },
     '&[x-placement*="right"] $arrow': {
       left: 0,
-      marginLeft: '-1em',
+      marginLeft: '-0.71em',
+      height: '1em',
+      width: '0.71em',
       marginTop: 4,
       marginBottom: 4,
-      height: '2em',
-      width: '1em',
       '&::before': {
-        borderWidth: '1em 1em 1em 0',
-        borderColor: 'transparent currentcolor transparent transparent',
+        transformOrigin: '100% 100%',
       },
     },
     '&[x-placement*="left"] $arrow': {
       right: 0,
-      marginRight: '-1em',
+      marginRight: '-0.71em',
+      height: '1em',
+      width: '0.71em',
       marginTop: 4,
       marginBottom: 4,
-      height: '2em',
-      width: '1em',
       '&::before': {
-        borderWidth: '1em 0 1em 1em',
-        borderColor: 'transparent transparent transparent currentcolor',
+        transformOrigin: '0 0',
       },
     },
   };
@@ -88,7 +80,7 @@ export const styles = (theme) => ({
   popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
-    backgroundColor: fade(theme.palette.grey[700], 0.9),
+    backgroundColor: alpha(theme.palette.grey[700], 0.9),
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.common.white,
     fontFamily: theme.typography.fontFamily,
@@ -106,16 +98,20 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the arrow element. */
   arrow: {
+    overflow: 'hidden',
     position: 'absolute',
-    fontSize: 6,
-    color: fade(theme.palette.grey[700], 0.9),
+    width: '1em',
+    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    boxSizing: 'border-box',
+    color: alpha(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
       display: 'block',
-      width: 0,
-      height: 0,
-      borderStyle: 'solid',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'currentColor',
+      transform: 'rotate(45deg)',
     },
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
@@ -186,6 +182,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
+    PopperComponent = Popper,
     PopperProps,
     title,
     TransitionComponent = Grow,
@@ -491,7 +488,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <Popper
+      <PopperComponent
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
           [classes.popperArrow]: arrow,
@@ -525,7 +522,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
             </div>
           </TransitionComponent>
         )}
-      </Popper>
+      </PopperComponent>
     </React.Fragment>
   );
 });
@@ -629,6 +626,10 @@ Tooltip.propTypes = {
     'top-start',
     'top',
   ]),
+  /**
+   * The component used for the popper.
+   */
+  PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](/api/popper/) element.
    */

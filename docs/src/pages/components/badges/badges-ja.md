@@ -1,13 +1,13 @@
 ---
-title: バッジReactコンポーネント
+title: React バッジコンポーネント
 components: Badge
 ---
 
-# Badge (バッジ)
+# Badge バッジ
 
-<p class="description">バッジは、その子供の右上に小さなバッジを生成します。</p>
+<p class="description">バッジは、その子要素の右上に小さなバッジを生成します。</p>
 
-## Basic badges
+## 基本的なバッジ
 
 プライマリー色とセカンダリーを使用した、テキストを含むバッジの例。 バッジが子要素に適用されます。
 
@@ -29,15 +29,15 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
-## Maximum value
+## 最大値
 
 バッジコンテンツの値に上限を設定するには、 `max` プロパティを使用します。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot badge
+## ドットバッジ
 
-`dot`プロパティは、バッジを小さなドットに変更します。 これは、何かが変更されたことをカウントせずに通知するために使用できます。
+`dot`プロパティは、バッジを小さなドットに変更します。 これは、何かが変更されたことをカウントせずに通知するために使用できます。 これは、何かが変更されたことをカウントせずに通知するために使用できます。 これは、何かが変更されたことをカウントせずに通知するために使用できます。 これは、何かが変更されたことをカウントせずに通知するために使用できます。 これは、何かが変更されたことをカウントせずに通知するために使用できます。
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -49,6 +49,6 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 
 ## バッジの配置
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+`anchorOrigin` プロパティを使用して、バッジをラップされた要素の隅に移動できます。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}

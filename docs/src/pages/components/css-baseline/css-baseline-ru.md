@@ -58,9 +58,13 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - `box-sizing` is set globally on the `<html>` element to `border-box`. Every element—including `*::before` and `*::after` are declared to inherit this property, which ensures that the declared width of the element is never exceeded due to padding or border.
 
-### Оформление текста
+### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
 - Set the `theme.typography.body2` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Сглаживание шрифтов включено для лучшего отображения шрифта Roboto.
+- Custom font-smoothing is enabled for better display of the Roboto font.
+
+## Кастомизация
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

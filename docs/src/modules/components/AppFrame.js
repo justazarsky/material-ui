@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -31,7 +32,7 @@ import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL, SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -141,10 +142,21 @@ const styles = (theme) => ({
       display: 'none',
     },
   },
+  banner: {
+    display: 'block',
+    padding: 8,
+    textAlign: 'center',
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.background.paper : theme.palette.primary.dark,
+    color: 'white',
+  },
+  bannerLink: {
+    textDecoration: 'underline',
+  },
 });
 
 function AppFrame(props) {
-  const { children, classes } = props;
+  const { children, classes, disableDrawer = false } = props;
   const theme = useTheme();
   const t = useSelector((state) => state.options.t);
   const userLanguage = useSelector((state) => state.options.userLanguage);
@@ -188,7 +200,7 @@ function AppFrame(props) {
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (!activePage || activePage.disableDrawer === true) {
+  if (activePage?.disableDrawer === true || disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {
@@ -205,6 +217,13 @@ function AppFrame(props) {
       </MuiLink>
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
+        <Typography variant="body2" className={classes.banner} noWrap>
+          {t('v5IsOut')}{' '}
+          <Link color="inherit" className={classes.bannerLink} href="https://next.material-ui.com">
+            {t('v5docsLink')}
+          </Link>{' '}
+          {t('v5startAdoption')}
+        </Typography>
         <Toolbar>
           <IconButton
             edge="start"
@@ -286,7 +305,7 @@ function AppFrame(props) {
               aria-label={t('editWebsiteColors')}
               component={Link}
               naked
-              href="/customization/color/#color-tool"
+              href="/customization/color/#playground"
               data-ga-event-category="header"
               data-ga-event-action="colors"
             >
@@ -297,7 +316,7 @@ function AppFrame(props) {
             <IconButton
               component="a"
               color="inherit"
-              href="https://github.com/mui-org/material-ui"
+              href={SOURCE_CODE_REPO}
               aria-label={t('github')}
               data-ga-event-category="header"
               data-ga-event-action="github"
@@ -349,6 +368,7 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
+  disableDrawer: PropTypes.node,
 };
 
 export default withStyles(styles)(AppFrame);

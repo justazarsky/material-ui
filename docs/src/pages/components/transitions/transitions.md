@@ -1,5 +1,5 @@
 ---
-title: Transition React component
+title: React Transition component
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
@@ -38,7 +38,7 @@ export default Main() {
 ## Collapse
 
 Expand vertically from the top of the child element.
-The `collapsedHeight` property can be used to set the minimum height when not expanded.
+The `collapsedSize` property can be used to set the minimum height when not expanded.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 

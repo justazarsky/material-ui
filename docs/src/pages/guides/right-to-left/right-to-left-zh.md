@@ -17,7 +17,7 @@
 在您自定义的主题中设置方向：
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
 });
 ```
@@ -59,7 +59,7 @@ function RTL(props) {
 
 ## 选择退出 rtl 转换
 
-若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上`flip: false`。
+若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上 `flip: false`。
 
 *请使用右上角的方向切换按钮来查看效果。*
 

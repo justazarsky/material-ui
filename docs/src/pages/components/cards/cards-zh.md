@@ -1,5 +1,5 @@
 ---
-title: React Card 卡片组件
+title: React Card（卡片）组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -51,4 +51,4 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 ## Customization 个性化
 
-👑如果您还在寻找灵感，您可以查看一下 [MUI Treasury 自定义的例子](https://deprecate.mui-treasury.com/components/card)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/card)。

@@ -1,5 +1,5 @@
 ---
-title: Switch React component
+title: Composant React switch
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -30,6 +30,8 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
+
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/switch).
 
 ## Tailles
 

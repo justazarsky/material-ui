@@ -1,6 +1,6 @@
 ---
-title: Tabs React component
-components: Tabs, Tab, TabScrollButton
+title: React Tabs component
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
 # Tabs
@@ -71,7 +71,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
 
 ## Vertical tabs
 
@@ -109,10 +109,17 @@ extra work.
 The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the
 "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
 
-#### `selectionFollowsFocus` Demo
+#### Demo
 
 The following two demos only differ in their keyboard navigation behavior.
 Focus a tab and navigate with arrow keys to notice the difference.
+
+```jsx
+/* Tabs where selection follows focus */
+<Tabs selectionFollowsFocus />
+/* Tabs where each tab needs to be selected manually */
+<Tabs />
+```
 
 {{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
 

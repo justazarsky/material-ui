@@ -4,7 +4,7 @@
 
 ## はじめに
 
-`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部：
+`@material-ui/system`は、 "*style functions*" と呼ばれる低レベルのユーティリティ関数を提供し、強力な設計システムを構築します。 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部： 主な機能の一部：
 
 - ⚛️コンポーネントのpropsからテーマの値に直接アクセスします。
 - 🦋 UIの一貫性を促進します。
@@ -45,7 +45,7 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-このボックスコンポーネントは、新しい[間隔プロパティ](/system/spacing/#api)および[色プロパティ](/system/palette/#api)をサポートするようになりました。 For instance, you can provide a padding property: `p` and a color property: `color`.
+You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
@@ -314,7 +314,7 @@ The `style()` helper can also be used to maps properties to style objects in a t
 
 ## CSS property
 
-If you want to support custom CSS values, you can use the `css()` helper. It will process the `css` property.
+It will process the `css` property. If you want to support custom CSS values, you can use the `css()` helper.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -337,7 +337,7 @@ In practice, a Box component can save you a lot of time. In this example, we dem
 - [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) has slowly introduced atomic class names in v2, v3, and v4. The way they group their "Helper classes" was used as inspiration.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions. It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
+  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).

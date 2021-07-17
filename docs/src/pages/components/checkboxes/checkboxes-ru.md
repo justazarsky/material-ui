@@ -1,5 +1,5 @@
 ---
-title: Checkbox React component
+title: Компонент React Checkbox
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -38,6 +38,8 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
 
 ## Бесплатно
 

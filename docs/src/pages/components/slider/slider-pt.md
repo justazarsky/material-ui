@@ -7,7 +7,7 @@ components: Slider
 
 <p class="description">Sliders permitem que os usuários façam seleções a partir de um intervalo de valores.</p>
 
-[Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
+Os [Sliders](https://material.io/design/components/sliders.html) refletem um intervalo de valores ao longo de uma barra, a partir do qual os usuários podem selecionar um único valor. Eles são ideais para ajustar configurações como volume, brilho ou aplicação de filtros de imagem.
 
 - 📦 [22 kB gzipped](/size-snapshot) (mas apenas +8 kB quando usado junto com outros componentes de Material-UI).
 
@@ -25,7 +25,7 @@ Você pode gerar uma marca para cada etapa com `marks={true}`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
-### Pequenos passos
+### Pequenas etapas
 
 Você pode alterar o incremento padrão da etapa.
 
@@ -33,7 +33,7 @@ Você pode alterar o incremento padrão da etapa.
 
 ### Marcas personalizadas
 
-Você pode ter marcas customizadas, fornecendo uma matriz para a propriedade `marks`.
+Você pode ter marcas customizadas, fornecendo um array para a propriedade `marks`.
 
 {{"demo": "pages/components/slider/DiscreteSliderMarks.js"}}
 
@@ -71,19 +71,19 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Track
+## Faixa
 
-A propriedade `track` define a exibição da faixa durante a seleção do usuário.
+A faixa exibe o intervalo disponível para a seleção do usuário.
 
-### Track desabilitada
+### Faixa desabilitada
 
-A propriedade track pode ser desabilitada com `track={false}`.
+A faixa pode ser desabilitada com `track={false}`.
 
 {{"demo": "pages/components/slider/TrackFalseSlider.js"}}
 
-### Track invertida
+### Faixa invertida
 
-A propriedade track pode ser definida como invertida com `track="inverted"`.
+A faixa pode ser invertida com `track="inverted"`.
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
@@ -99,5 +99,5 @@ Você pode usar a propriedade `scale` para representar o `value` em uma escala d
 
 O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- Cada miniatura possui propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
-- Cada marcador tem um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
+- Cada marcador possua propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
+- Cada marcador tenha um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

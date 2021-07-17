@@ -11,6 +11,7 @@ export const styles = (theme) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
+
   return {
     /* Styles applied to the root element. */
     root: {
@@ -64,7 +65,28 @@ export const styles = (theme) => {
   };
 };
 
+let warnedOnce = false;
+
+/**
+ * ⚠️ The ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.
+ *
+ * You should use `import { AccordionSummary } from '@material-ui/core'`
+ * or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
+ */
 const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(props, ref) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: the ExpansionPanelSummary component was renamed to AccordionSummary to use a more common naming convention.',
+          '',
+          "You should use `import { AccordionSummary } from '@material-ui/core'`",
+          "or `import AccordionSummary from '@material-ui/core/AccordionSummary'`",
+        ].join('\n'),
+      );
+    }
+  }
   const {
     children,
     classes,
@@ -146,6 +168,10 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
 });
 
 ExpansionPanelSummary.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the expansion panel summary.
    */
@@ -154,7 +180,7 @@ ExpansionPanelSummary.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -176,7 +202,8 @@ ExpansionPanelSummary.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
    */
   onFocusVisible: PropTypes.func,
 };

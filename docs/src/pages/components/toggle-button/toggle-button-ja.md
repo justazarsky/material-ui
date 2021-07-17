@@ -7,19 +7,31 @@ components: ToggleButton, ToggleButtonGroup
 
 <p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-関連する [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button)のグループを強調するには、次の操作を行います。 グループは共通のコンテナーを共用する必要があります。
+ToggleButton sets `aria-pressed="<bool>"` according to the button state. ToggleButton sets `aria-pressed="<bool>"` according to the button state.
 
-`ToggleButtonGroup` は、 が独自の `値` propを指定したときに、子ボタンの選択状態を制御します。
+## 排他的な選択
+
+Text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time. Selecting one option deselects any other.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
+## 複数選択
+
+Logically-grouped options, like bold, italic, and underline, allow multiple options to be selected.
+
+{{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
+
 ## サイズ
 
-大きなボタンと小さなボタンがありますか? `size`プロパティを使用します。
+大きなボタンと小さなボタンがありますか? `size`propを使用します。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Enforce value set
+## 垂直方向のボタン
+
+{{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
+
+## 値がセットされていることを強制する
 
 If you want to enforce at least one button to be active, you can adapt your handleChange function.
 
@@ -39,11 +51,11 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/ToggleButtonNotEmpty.js"}}
 
-## Standalone toggle button
+## スタンドアロンのトグルボタン
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customized toggle button
+## カスタマイズされたトグルボタン
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
@@ -51,6 +63,5 @@ const handleAlignment = (event, newAlignment) => {
 
 ## アクセシビリティ
 
-ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
-
-ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
+- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。

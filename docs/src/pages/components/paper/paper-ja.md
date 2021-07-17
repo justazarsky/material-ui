@@ -1,5 +1,5 @@
 ---
-title: Paper Reactコンポーネント
+title: Reactペーパーコンポーネント
 components: Paper
 ---
 

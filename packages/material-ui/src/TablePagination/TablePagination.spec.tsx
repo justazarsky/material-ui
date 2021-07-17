@@ -4,12 +4,12 @@ import TablePagination from '@material-ui/core/TablePagination';
 function classesTest() {
   const defaultProps = {
     count: 1,
-    onChangePage: () => {},
+    onPageChange: () => {},
     page: 1,
     rowsPerPage: 1,
   };
 
   <TablePagination classes={{ actions: 'actions' }} {...defaultProps} />;
-  // desired
-  <TablePagination classes={{ alignCenter: 'center' }} {...defaultProps} />; // $ExpectError
+  // @ts-expect-error desired
+  <TablePagination classes={{ alignCenter: 'center' }} {...defaultProps} />;
 }

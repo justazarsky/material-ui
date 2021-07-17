@@ -6,6 +6,18 @@ export * from './styles';
 
 export * from './utils';
 
+export { default as Accordion } from './Accordion';
+export * from './Accordion';
+
+export { default as AccordionActions } from './AccordionActions';
+export * from './AccordionActions';
+
+export { default as AccordionDetails } from './AccordionDetails';
+export * from './AccordionDetails';
+
+export { default as AccordionSummary } from './AccordionSummary';
+export * from './AccordionSummary';
+
 export { default as AppBar } from './AppBar';
 export * from './AppBar';
 
@@ -158,6 +170,15 @@ export * from './Icon';
 
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+
+export { default as ImageList } from './ImageList';
+export * from './ImageList';
+
+export { default as ImageListItem } from './ImageListItem';
+export * from './ImageListItem';
+
+export { default as ImageListItemBar } from './ImageListItemBar';
+export * from './ImageListItemBar';
 
 export { default as Input } from './Input';
 export * from './Input';
@@ -338,6 +359,10 @@ export * from './Tooltip';
 
 export { default as Typography } from './Typography';
 export * from './Typography';
+
+// eslint-disable-next-line camelcase
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';
 
 export { default as useMediaQuery } from './useMediaQuery';
 export * from './useMediaQuery';

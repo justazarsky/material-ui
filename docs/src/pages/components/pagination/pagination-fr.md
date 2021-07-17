@@ -1,5 +1,5 @@
 ---
-title: Pagination React component
+title: Composant de pagination de React
 components: Pagination, PaginationItem
 ---
 
@@ -45,13 +45,23 @@ Vous pouvez spécifier le nombre de chiffres à afficher de chaque côté de la 
 
 ## `usePagination`
 
-Pour les cas d'utilisation de personnalisation avancée, nous exposons un hook `usePagination()`. Il accepte presque les mêmes options que le composant de Pagination moins tous les propriétés liés au rendu de JSX. Le composant de Pagination utilise ce hook en interne.
+Pour les cas de personnalisation avancée, nous exposons un crochet `usePagination()` sans tête. Il accepte presque les mêmes options que le composant de Pagination moins tous les propriétés liés au rendu de JSX. Le composant de Pagination utilise ce hook en interne.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
+
+## Table pagination
+
+The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+
+For the pagination of a large set of tabular data, you should use the `TablePagination` component.
+
+{{"demo": "pages/components/pagination/TablePagination.js"}}
+
+You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 
 ## Accessibilité
 

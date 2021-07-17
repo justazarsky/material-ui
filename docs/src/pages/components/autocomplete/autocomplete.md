@@ -1,5 +1,5 @@
 ---
-title: Autocomplete React component
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 ---
 
@@ -78,7 +78,7 @@ You could also display a dialog when the user wants to add a new value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook.
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
 The Autocomplete component uses this hook internally.
@@ -139,7 +139,17 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customized Autocomplete
+## Customizations
+
+### Custom input
+
+The `renderInput` prop allows you to customize the rendered input.
+The first argument of this render prop contains props that you need to forward.
+Pay specific attention to the `ref` and `inputProps` keys.
+
+{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
+
+### GitHub's picker
 
 This demo reproduces the GitHub's label picker:
 
@@ -238,12 +248,6 @@ In the event you want the avoid autofill, you can try the following:
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
 You can work around the issue with the `disablePortal` prop.
-
-### TypeScript
-
-To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`.
-See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details.
-TypeScript might solve this bug in the future.
 
 ### ListboxComponent
 

@@ -1,5 +1,5 @@
 ---
-title: Hidden React component
+title: Composant React Hidden
 components: Hidden
 ---
 
@@ -23,7 +23,7 @@ mdDown      |                     hide | show
 
 ```
 
-## Implementations
+## Implémentations
 
 ### js
 

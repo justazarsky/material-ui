@@ -1,5 +1,5 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
 ---
 
@@ -41,6 +41,8 @@ The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
 
 ## Multiple Select
 

@@ -30,7 +30,7 @@ The `MuiTabPanel` name can be used for providing [default props](/customization/
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name required">value&nbsp;*</span> | <span class="prop-type">string</span> |  | The `value` of the corresponding `Tab`. Must use the index of the `Tab` when no `value` was passed to `Tab`. |
+| <span class="prop-name required">value<abbr title="required">*</abbr></span> | <span class="prop-type">string</span> |  | The `value` of the corresponding `Tab`. Must use the index of the `Tab` when no `value` was passed to `Tab`. |
 
 The `ref` is forwarded to the root element.
 
@@ -49,4 +49,8 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TabPanel/TabPanel.js) for more detail.
+
+## Demos
+
+- [Tabs](/components/tabs/)
 

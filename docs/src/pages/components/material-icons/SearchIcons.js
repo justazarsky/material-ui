@@ -9,6 +9,7 @@ import debounce from 'lodash/debounce';
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -107,6 +108,9 @@ let Icons = (props) => {
               onClick={handleClickOpen}
               title={icon.key}
               className={classes.iconSvg}
+              data-ga-event-category="material-icons"
+              data-ga-event-action="click"
+              data-ga-event-label={icon.key}
             />
             {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
             <p onClick={handleClick}>{icon.key}</p>
@@ -218,12 +222,12 @@ let DialogDetails = (props) => {
           <DialogContent>
             <Grid container className={classes.container}>
               <Grid item xs={12} sm="auto">
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon className={classes.canvas} />
                 </Grid>
               </Grid>
               <Grid item xs>
-                <Grid container alignItems="flex-end" justify="center">
+                <Grid container alignItems="flex-end" justifyContent="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <selectedIcon.Icon className={classes.fontSize} fontSize="small" />
@@ -240,13 +244,12 @@ let DialogDetails = (props) => {
                     </Tooltip>
                   </Grid>
                 </Grid>
-                <Grid container justify="center">
-                  <selectedIcon.Icon className={clsx(classes.context, classes.contextPrimary)} />
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(classes.context, classes.contextPrimaryInverse)}
                   />
                 </Grid>
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(classes.context, classes.contextTextPrimary)}
                   />
@@ -254,7 +257,7 @@ let DialogDetails = (props) => {
                     className={clsx(classes.context, classes.contextTextPrimaryInverse)}
                   />
                 </Grid>
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <selectedIcon.Icon
                     className={clsx(classes.context, classes.contextTextSecondary)}
                   />
@@ -286,12 +289,15 @@ DialogDetails.propTypes = {
 DialogDetails = React.memo(DialogDetails);
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: 500,
+  },
   form: {
     margin: theme.spacing(2, 0),
   },
   paper: {
     position: 'sticky',
-    top: 80,
+    top: 80 + BANNER_HEIGHT, // offset for the banner
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
@@ -421,8 +427,8 @@ export default function SearchIcons() {
               window.ga('send', {
                 hitType: 'event',
                 eventCategory: 'material-icons',
-                eventAction: value,
-                eventLabel: 'no results',
+                eventAction: 'no-results',
+                eventLabel: value,
               });
             }
           });
@@ -440,7 +446,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container>
+    <Grid container className={classes.root}>
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
           <RadioGroup>

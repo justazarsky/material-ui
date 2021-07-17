@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from '../ToggleButton';
@@ -33,6 +33,16 @@ describe('<ToggleButtonGroup />', () => {
     const { getByLabelText } = render(<ToggleButtonGroup aria-label="my group" />);
 
     expect(getByLabelText('my group')).to.have.attribute('role', 'group');
+  });
+
+  it('can render group orientation vertically', () => {
+    const { getByRole } = render(
+      <ToggleButtonGroup orientation="vertical">
+        <ToggleButton value="one">1</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    expect(getByRole('group')).to.have.class('MuiToggleButtonGroup-vertical');
+    expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
   });
 
   describe('exclusive', () => {

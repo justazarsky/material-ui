@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -26,7 +26,7 @@ export const styles = (theme) => ({
   },
   /* Styles applied to the root element if `light={true}`. */
   light: {
-    backgroundColor: fade(theme.palette.divider, 0.08),
+    backgroundColor: alpha(theme.palette.divider, 0.08),
   },
   /* Styles applied to the root element if `variant="middle"`. */
   middle: {
@@ -80,15 +80,23 @@ const Divider = React.forwardRef(function Divider(props, ref) {
 });
 
 Divider.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Absolutely position the element.
    */
   absolute: PropTypes.bool,
   /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -97,7 +105,7 @@ Divider.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, a vertical divider will have the correct height when used in flex container.
    * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)

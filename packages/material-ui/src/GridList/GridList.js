@@ -16,7 +16,29 @@ export const styles = {
   },
 };
 
+let warnedOnce = false;
+
+/**
+ * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
+ *
+ * You should use `import { ImageList } from '@material-ui/core'`
+ * or `import ImageList from '@material-ui/core/ImageList'`.
+ */
 const GridList = React.forwardRef(function GridList(props, ref) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedOnce) {
+      warnedOnce = true;
+      console.error(
+        [
+          'Material-UI: The GridList component was renamed to ImageList to align with the current Material Design naming.',
+          '',
+          "You should use `import { ImageList } from '@material-ui/core'`",
+          "or `import ImageList from '@material-ui/core/ImageList'`.",
+        ].join('\n'),
+      );
+    }
+  }
+
   const {
     cellHeight = 180,
     children,
@@ -95,7 +117,7 @@ GridList.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Number of px for the spacing between tiles.
    */

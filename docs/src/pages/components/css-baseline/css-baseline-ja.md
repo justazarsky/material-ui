@@ -24,9 +24,9 @@ export default function MyApp() {
 }
 ```
 
-## Scoping on children
+## 子要素にのみスコープさせる
 
-However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
+しかしながら、サイトをMaterial-UIに移行している途中で、グローバルなリセットを使えないかもしれません。 `ScopedCssBaseline` コンポーネントを使用して、子要素にのみベースラインを適用することができます。
 
 ```jsx
 import React from 'react';
@@ -43,13 +43,13 @@ export default function MyApp() {
 }
 ```
 
-⚠️ Make sure you import `ScopedCssBaseline` first to avoid box-sizing conflicts as in the above example.
+⚠️ 上記の例のように、最初に `ScopedCssBaseline` をインポートして、box-sizingの競合を回避してください。
 
 ## アプローチ
 
 ### ページ
 
-`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 具体的には: 具体的には: 具体的には: 具体的には: 具体的には:
 
 - すべてのブラウザの余白が削除されています。
 - デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
@@ -62,5 +62,9 @@ export default function MyApp() {
 
 - `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
 - `<body>` 要素に `theme.typography.body2` スタイルを設定します。
-- Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
-- Robotoフォントを見やすくするために、フォントのアンチエイリアスが有効になります。
+- `<b>`、`<strong>`要素のfont-weightに `theme.typography.fontWeightBold` を設定します。
+- Roboto フォントの表示を改善するために、カスタムの font-smoothing が有効になります。
+
+## カスタマイズ
+
+Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.

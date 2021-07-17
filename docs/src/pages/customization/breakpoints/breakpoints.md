@@ -100,7 +100,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 If you change the default breakpoints's values, you need to provide them all:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -115,8 +115,8 @@ const theme = createMuiTheme({
 
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
 
-```tsx
-const theme = createMuiTheme({
+```js
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -125,11 +125,13 @@ const theme = createMuiTheme({
     },
   },
 });
+```
 
-declare module "@material-ui/core/styles/createBreakpoints"
-{
-  interface BreakpointOverrides
-  {
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
@@ -284,7 +286,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // withWidth component ⚛️
     MuiWithWidth: {

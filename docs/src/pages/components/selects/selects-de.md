@@ -1,5 +1,5 @@
 ---
-title: Auswahl React-Komponente
+title: React Select component
 components: Select, NativeSelect
 ---
 
@@ -27,15 +27,17 @@ Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Platt
 
 ## Text Felder (Text Fields)
 
-Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. Ein Beispiel für den Auswahlmodus [in diesem Abschnitt](/components/text-fields/#select).
+Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. The `Select` component can handle multiple selections.
 
 ## Benutzerdefinierte Auswahl
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Anschließend können Sie es entweder direkt als Textfeld verwenden oder der Eigenschaft select `input` zuweisen, um ein Feld `select` zu erhalten.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
+
+🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/select) an.
 
 ## Mehrfach Auswahl
 

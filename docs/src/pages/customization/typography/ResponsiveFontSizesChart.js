@@ -3,7 +3,7 @@ import React from 'react';
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */
 import { convertLength } from '@material-ui/core/styles/cssUtils';
-import { makeStyles, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { makeStyles, createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import {
   Legend,
   Tooltip,
@@ -15,7 +15,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 const colors = ['#443dc2', '#2060df', '#277e91', '#378153', '#4d811d', '#63780d', '#996600'];
@@ -88,7 +88,7 @@ export default function ResponsiveFontSizes() {
           </XAxis>
           <YAxis dataKey="fontSize" type="number">
             <Label position="top" offset={20}>
-              font-size (px)
+              font-size (rem)
             </Label>
           </YAxis>
           <Tooltip />

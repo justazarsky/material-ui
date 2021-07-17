@@ -13,8 +13,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
 However, this is optional; Material-UI components come with a default theme.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components,
-so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
+`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Theme configuration variables
@@ -33,8 +32,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider).
-It can be convenient to add additional variables to the theme so you can use them everywhere.
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
@@ -64,7 +62,7 @@ The main point to understand is that the injected CSS is cached with the followi
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
@@ -80,17 +78,18 @@ Generate a theme base on the options received.
 #### Examples
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
-    primary: purple,
-    secondary: green,
-  },
-  status: {
-    danger: 'orange',
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: green[500],
+    },
   },
 });
 ```
@@ -119,9 +118,9 @@ Generate responsive typography settings based on the options received.
 #### Examples
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -139,7 +138,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 The component used in the `component` prop of the following components need to forward their ref:
 
-- [`Collapse`](/api/Collapse/)
+- [`Collapse`](/api/collapse/)
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`.
 See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
@@ -148,9 +147,9 @@ See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)
 
 The `children` of the following components need to forward their ref:
 
-- [`Fade`](/api/Fade/)
-- [`Grow`](/api/Grow/)
-- [`Zoom`](/api/Zoom/)
+- [`Fade`](/api/fade/)
+- [`Grow`](/api/grow/)
+- [`Zoom`](/api/zoom/)
 
 ```diff
 -function TabPanel(props) {
@@ -197,12 +196,12 @@ function Fade() {
 
 #### Arguments
 
-1. `options` (_Object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_Array_): Deep merge the arguments with the about to be returned theme.
+1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 
-`theme` (_Object_): A complete, ready to use theme object.
+`theme` (*Object*): A complete, ready to use theme object.
 
 #### Examples
 

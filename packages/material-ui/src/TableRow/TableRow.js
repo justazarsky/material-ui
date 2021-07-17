@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -17,7 +17,7 @@ export const styles = (theme) => ({
       backgroundColor: theme.palette.action.hover,
     },
     '&$selected, &$selected:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
   /* Pseudo-class applied to the root element if `selected={true}`. */
@@ -83,7 +83,7 @@ TableRow.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the table row will shade on hover.
    */

@@ -18,7 +18,10 @@ import { GridList } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
 
+You should use `import { ImageList } from '@material-ui/core'`
+or `import ImageList from '@material-ui/core/ImageList'`.
 
 ## Component name
 
@@ -29,7 +32,7 @@ The `MuiGridList` name can be used for providing [default props](/customization/
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">cellHeight</span> | <span class="prop-type">number<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | Grid Tiles that will be in Grid List. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | Grid Tiles that will be in Grid List. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number</span> | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
@@ -52,8 +55,4 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridList/GridList.js) for more detail.
-
-## Demos
-
-- [Grid List](/components/grid-list/)
 

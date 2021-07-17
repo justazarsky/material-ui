@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import capitalize from '../utils/capitalize';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import Button from '../Button';
 
@@ -82,13 +82,13 @@ export const styles = (theme) => ({
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.primary.main, 0.5),
+      borderColor: alpha(theme.palette.primary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: {
     '&:not(:last-child)': {
-      borderColor: fade(theme.palette.secondary.main, 0.5),
+      borderColor: alpha(theme.palette.secondary.main, 0.5),
     },
   },
   /* Styles applied to the children if `variant="outlined"`. */
@@ -136,7 +136,6 @@ export const styles = (theme) => ({
       },
     },
   },
-
   /* Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
   groupedContainedVertical: {
     '&:not(:last-child)': {
@@ -238,15 +237,19 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
 });
 
 ButtonGroup.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button group.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -259,7 +262,7 @@ ButtonGroup.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the buttons will be disabled.
    */
@@ -270,7 +273,6 @@ ButtonGroup.propTypes = {
   disableElevation: PropTypes.bool,
   /**
    * If `true`, the button keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -282,18 +284,18 @@ ButtonGroup.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The group orientation.
+   * The group orientation (layout flow direction).
    */
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);

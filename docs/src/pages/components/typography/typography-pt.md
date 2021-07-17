@@ -1,4 +1,5 @@
 ---
+title: Componente React de Tipografia
 components: Typography
 ---
 
@@ -6,15 +7,15 @@ components: Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
-O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer layout. Uma [escala tipográfica](https://material.io/design/typography/#type-scale) tem um conjunto limitado de tamanhos de tipo que funcionam bem em conjunto com a grade de layout.
+O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer leiaute. Uma [escala tipográfica](https://material.io/design/typography/#type-scale) tem um conjunto limitado de tipos de tamanhos que funcionam bem em conjunto com o leiaute de grade.
 
 ## Geral
 
-A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O desenvolvedor é responsável por carregar todas as fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de começar. Para configuração mais avançadas, dê uma olhada na [seção de personalização de temas](/customization/typography/).
+A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. O desenvolvedor é responsável por carregar todas as fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
 
-## CDN da fonte Roboto
+## Fonte Roboto via CDN
 
-Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de um CDN:
+Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de uma CDN:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -22,19 +23,19 @@ Temos abaixo um exemplo de markup de link usado para carregar a fonte Roboto de 
 
 ## Instalar via npm
 
-Você pode [instalá-la](https://www.npmjs.com/package/typeface-roboto) digitando o comando a seguir em um terminal:
+Você pode [instalá-la](https://www.npmjs.com/package/@fontsource/roboto) digitando o comando a seguir em um terminal:
 
-`npm install typeface-roboto --save`
+`npm install @fontsource/roboto`
 
 Então, você pode importá-la no seu ponto de entrada (entry-point).
 
 ```js
-import 'typeface-roboto';
+import 'fontsource-roboto';
 ```
 
-Para mais informações confira o projeto [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
+Para maiores informações, confira em [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, itálico/regular, SVG/woff). Colocar todos os arquivos de fonte em linha pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+⚠️ Tome cuidado ao usar essa abordagem. Certifique-se de que seu bundler não carregue ansiosamente todas as variações da fonte (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. Carregar todos os arquivos de fonte pode aumentar o tamanho do seu pacote significativamente. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 
@@ -42,7 +43,7 @@ Para mais informações confira o projeto [typeface](https://github.com/KyleAMat
 
 ## Tema
 
-Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem das chaves de [`tipografia`](/customization/default-theme/?expand-path=$.typography) do tema.
+Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem com o uso das chaves de [`tipografia`](/customization/default-theme/?expand-path=$.typography) do tema.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
@@ -50,7 +51,7 @@ Em algumas situações, talvez você não consiga usar o componente `Typography`
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. É importante ressaltar que o estilo de uma tipografia é independente do elemento semântico por baixo dela.
 
-- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
+- Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
 
 ```jsx
 {/ * Já existe um h1 na página, não vamos duplicá-lo. */}
@@ -62,7 +63,7 @@ O componente de Tipografia (Typography) usa a propriedade `variantMapping` para 
 - Você pode alterar o mapeamento [globalmente usando o tema](/customization/globals/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
@@ -130,7 +131,7 @@ const Fab = React.forwardRef(function Fab(props, ref) {
     disableFocusRipple = false,
     focusVisibleClassName,
     size = 'large',
-    variant = 'round',
+    variant = 'circular',
     ...other
   } = props;
 
@@ -161,15 +162,19 @@ const Fab = React.forwardRef(function Fab(props, ref) {
 });
 
 Fab.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -182,14 +187,13 @@ Fab.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -209,15 +213,20 @@ Fab.propTypes = {
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * @ignore
-   */
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * The variant to use.
+   * 'round' is deprecated, use 'circular' instead.
    */
-  variant: PropTypes.oneOf(['round', 'extended']),
+  variant: chainPropTypes(PropTypes.oneOf(['extended', 'circular', 'round']), (props) => {
+    if (props.variant === 'round') {
+      throw new Error(
+        'Material-UI: variant="round" was renamed variant="circular" for consistency.',
+      );
+    }
+
+    return null;
+  }),
 };
 
 export default withStyles(styles, { name: 'MuiFab' })(Fab);

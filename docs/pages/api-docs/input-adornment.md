@@ -28,12 +28,12 @@ The `MuiInputAdornment` name can be used for providing [default props](/customiz
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the component, normally an `IconButton` or string. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the component, normally an `IconButton` or string. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disablePointerEvents</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Disable pointer events on the root. This allows for the content of the adornment to focus the input on click. |
 | <span class="prop-name">disableTypography</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If children is a string then disable wrapping in a Typography component. |
-| <span class="prop-name">position</span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'</span> |  | The position this adornment should appear relative to the `Input`. |
+| <span class="prop-name required">position<abbr title="required">*</abbr></span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'</span> |  | The position this adornment should appear relative to the `Input`. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> |  | The variant to use. Note: If you are using the `TextField` component or the `FormControl` component you do not have to set this manually. |
 
 The `ref` is forwarded to the root element.

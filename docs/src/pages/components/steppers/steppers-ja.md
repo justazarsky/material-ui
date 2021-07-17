@@ -1,9 +1,9 @@
 ---
-title: Stepper React component
+title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Stepper（ステッパー）
+# Stepper ステッパー
 
 <p class="description">ステッパーは、番号の付いたステップを通して進捗を伝えます。 ウィザードのようなワークフローを提供します。</p>
 
@@ -18,7 +18,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ### Linear
 
-`Stepper` は、現在のステップインデックス（ゼロベース）を `activeStep` プロパティとして渡すことで制御できます。` <code>Stepper`方向は、 `orientation`プロパティを使用して設定されます。
+`Stepper` は、現在のステップインデックス（ゼロベース）を `activeStep` プロパティとして渡すことで制御できます。`<code>Stepper`方向は、 `orientation`プロパティを使用して設定されます。 `Stepper`方向は、 `orientation`プロパティを使用して設定されます。 `Stepper`方向は、 `orientation`プロパティを使用して設定されます。 `Stepper`方向は、 `orientation`プロパティを使用して設定されます。 `Stepper`方向は、 `orientation`プロパティを使用して設定されます。 `Stepper`方向は、 `orientation`プロパティを使用して設定されます。
 
 この例では、 `optional`プロパティを第2の`Step`コンポーネントに配置して、オプションの手順を使用する方法も示します。 オプションの手順がスキップされる場合の管理はユーザー次第です。 特定のステップでこれを決定したら、`completed={false}` を設定して、アクティブなステップインデックスがオプションのステップを超えていても、実際には完了していないことを示す必要があります。
 
@@ -32,7 +32,7 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ### カスタマイズされたステッパー
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js", "bg": true}}
 

@@ -2,11 +2,11 @@
 
 <p class="description">API que permite o uso de pontos de quebra em uma ampla variedade de contextos.</p>
 
-Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu layout em vários pontos de quebra. Material-UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
+Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu leiaute em vários pontos de quebra. Material-UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
 
 Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
 
-## Default breakpoints
+## Pontos de quebra padrão
 
 Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um valor):
 
@@ -16,20 +16,20 @@ Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um va
 - **lg,** grande: 1280px
 - **xl,** extra-grande: 1920px
 
-These breakpoint values are used to determine breakpoint ranges. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
+Esses valores de ponto de quebra são usados para determinar intervalos de pontos de quebra. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
 
 ```js
-valor           |0px     600px    960px    1280px   1920px
-chave           |xs      sm       md       lg       xl
-largura da tela |--------|--------|--------|--------|-------->
-intervalo       |   xs   |   sm   |   md   |   lg   |   xl
+value         |0px     600px    960px    1280px   1920px
+key           |xs      sm       md       lg       xl
+screen width  |--------|--------|--------|--------|-------->
+range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-These values can be [customized](#custom-breakpoints).
+Esses valores podem ser [customizados](#custom-breakpoints).
 
 ## Consultas de Mídia CSS
 
-Consultas de mídia CSS são a abordagem idiomática para tornar sua interface de usuário responsiva. O tema fornece quatro estilos auxiliares para fazer isso:
+Consultas de mídia CSS são a abordagem idiomática para tornar sua interface de usuário responsiva. O tema fornece quatro formas que auxiliam a fazer isso:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -73,7 +73,7 @@ Você pode aprender mais na página [useMediaQuery](/components/use-media-query/
 import withWidth from '@material-ui/core/withWidth';
 
 function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
+  return <div>{`Largura atual: ${props.width}`}</div>;
 }
 
 export default withWidth()(MyComponent);
@@ -83,18 +83,18 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
-## Custom breakpoints
+## Pontos de quebra customizados
 
-You define your project's breakpoints in the `theme.breakpoints` section of your theme.
+Você define os pontos de quebra do seu projeto na seção `theme.breakpoints` do seu tema.
 
-- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
-- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
-- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Padrão são [os valores acima](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
+- `theme.breakpoints.unit`: Padrão é `px`. A unidade usada para os valores do ponto de quebra.
+- `theme.breakpoints.step`: Padrão é 5 (`0.05px`). O incremento usado para implementar os pontos de quebra exclusivos.
 
-If you change the default breakpoints's values, you need to provide them all:
+Se você alterar os valores dos pontos de quebra padrão, você precisará fornecer novos conforme descreveremos:
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -107,10 +107,10 @@ const theme = createMuiTheme({
 })
 ```
 
-Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
+Sinta-se à vontade para ter quantos pontos de quebra você quiser, nomeando-os da maneira que preferir para o seu projeto.
 
-```tsx
-const theme = createMuiTheme({
+```js
+const theme = createTheme({
   breakpoints: {
     values: {
       tablet: 640,
@@ -119,17 +119,19 @@ const theme = createMuiTheme({
     },
   },
 });
+```
 
-declare module "@material-ui/core/styles/createBreakpoints"
-{
-  interface BreakpointOverrides
-  {
-    xs: false; // removes the `xs` breakpoint
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // remove o ponto de quebra `xs`
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adds the `tablet` breakpoint
+    tablet: true; // adiciona o ponto de quebra `tablet`
     laptop: true;
     desktop: true;
   }
@@ -262,7 +264,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
   - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     // Componente withWidth ⚛️
     MuiWithWidth: {

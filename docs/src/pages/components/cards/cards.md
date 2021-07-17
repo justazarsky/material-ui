@@ -1,5 +1,5 @@
 ---
-title: Card React component
+title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -25,7 +25,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## Complex Interaction
 
-On desktop, card content can expand.
+On desktop, card content can expand. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -51,5 +51,5 @@ Here's an example of a media control card.
 
 ## Customization
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/card).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
 

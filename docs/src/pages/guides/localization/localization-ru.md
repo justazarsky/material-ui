@@ -9,10 +9,10 @@ The default locale of Material-UI is English (United States). If you want to use
 Use the theme to configure the locale text globally:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: { main: '#1976d2' },
   },
@@ -22,6 +22,10 @@ const theme = createMuiTheme({
   <App />
 </ThemeProvider>
 ```
+
+### Пример
+
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ### Supported locales
 
@@ -65,10 +69,6 @@ You can [find the source](https://github.com/mui-org/material-ui/blob/master/pac
 To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there.
 
 Please do consider contributing new translations back to Material-UI by opening a pull request. However, Material-UI aims to support the [100 most popular locales](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), we might not accept contributions for locales that are not frequently used, for instance `gl-ES` that has "only" 2.5 million native speakers.
-
-### Пример
-
-{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ## RTL Support
 

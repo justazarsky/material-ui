@@ -2,15 +2,15 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
 import { createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import createServerRender from 'test/utils/createServerRender';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import capitalize from '../utils/capitalize';
 import Tab from '../Tab';
 import Tabs from './Tabs';
-import { createMuiTheme, ThemeProvider } from '../styles';
+import { createTheme, ThemeProvider } from '../styles';
 
 function findScrollButton(container, direction) {
   return container.querySelector(`svg[data-mui-test="KeyboardArrow${capitalize(direction)}Icon"]`);
@@ -715,7 +715,7 @@ describe('<Tabs />', () => {
 
       let wrapper;
       before(() => {
-        const theme = createMuiTheme({ direction });
+        const theme = createTheme({ direction });
         wrapper = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
       });
 

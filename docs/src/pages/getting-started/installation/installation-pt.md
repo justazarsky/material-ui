@@ -1,6 +1,6 @@
 # Instalação
 
-<p class="description">Instale o Material-UI, o framework React UI mais popular do mundo.</p>
+<p class="description">Instale o Material-UI, a biblioteca de componentes React UI mais popular do mundo.</p>
 
 O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/package/@material-ui/core).
 
@@ -9,10 +9,10 @@ O Material-UI está disponível como um [pacote do npm](https://www.npmjs.com/pa
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/core
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/core
 ```
 
@@ -20,7 +20,7 @@ Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmj
 
 ## Fonte Roboto
 
-O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir as [estas instruções](/components/typography/#general) para obtê-la. Por exemplo, instale-a através do Google Web Fonts:
+O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/components/typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -28,7 +28,7 @@ O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.c
 
 ## Ícones
 
-Para utilizar o componente de fonte `Icon`, você deve primeiro adicionar o pacote da fonte [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Por exemplo, instale-a através do Google Web Fonts:
+Para utilizar o componente de fonte `Icon`, você deve primeiro adicionar a fonte [Material icons](https://material.io/tools/icons/). Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -60,3 +60,16 @@ Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/t
 ⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
 
 ⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. Dessa forma aponta para uma versão **instável**, muda a medida que lançamos novas versões. Você deve considerar apontar para uma versão específica, como [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+
+## Recursos de design
+
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
+
+Esta é uma coleção de projetos de terceiros que estendem Material-UI.
+
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material-UI components.
+- <strong x-id="1">Sketch</strong>: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material-UI symbols.
+- <strong x-id="1">Framer</strong>: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.

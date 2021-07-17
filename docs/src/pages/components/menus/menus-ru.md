@@ -1,5 +1,5 @@
 ---
-title: React-компонент Меню
+title: Компонент React Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 
@@ -40,6 +40,8 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
 
 ## Меню с максимальной высотой
 

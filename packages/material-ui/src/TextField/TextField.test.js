@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
 import Input from '../Input';
@@ -49,9 +49,9 @@ describe('<TextField />', () => {
 
   describe('with a label', () => {
     it('label the input', () => {
-      const { getByLabelText } = render(<TextField id="labelled" label="Foo bar" />);
+      const { getByRole } = render(<TextField id="labelled" label="Foo bar" />);
 
-      expect(getByLabelText('Foo bar')).not.to.equal(null);
+      expect(getByRole('textbox', { name: 'Foo bar' })).not.to.equal(null);
     });
 
     it('should apply the className to the label', () => {
@@ -156,7 +156,7 @@ describe('<TextField />', () => {
     });
 
     it('associates the label with the <select /> when `native={true}` and `id`', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <TextField
           label="Currency:"
           id="labelled-select"
@@ -168,7 +168,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      expect(getByLabelText('Currency:')).to.have.property('value', 'dollar');
+      expect(getByRole('combobox', { name: 'Currency:' })).to.have.property('value', 'dollar');
     });
 
     it('renders a combobox with the appropriate accessible name', () => {
@@ -190,7 +190,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      const input = container.querySelector('input[type="hidden"]');
+      const input = container.querySelector('input[aria-hidden]');
       expect(input).not.to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });

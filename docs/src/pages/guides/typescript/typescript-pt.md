@@ -2,7 +2,9 @@
 
 <p class="description">Você pode adicionar tipagem estática para o JavaScript para melhorar a produtividade do desenvolvimento e a qualidade do código graças ao TypeScript.</p>
 
-Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript). É necessário estar no mínimo com a versão 2.8 do TypeScript.
+Material-UI requer como versão mínima o TypeScript 3.2.
+
+Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
 
 Para que os tipos funcionem, você tem que pelo menos ter as seguintes opções habilitadas no seu `tsconfig.json`:
 
@@ -17,11 +19,11 @@ Para que os tipos funcionem, você tem que pelo menos ter as seguintes opções 
 }
 ```
 
-As opções de modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
+As opções do modo strict são as mesmas que são necessárias para todos os tipos de pacote publicados no namespace `@types/`. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. Para obter a melhor experiência com os tipos, recomendamos configurar `"strict": true`.
 
 ## Uso de `withStyles`
 
-Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa possível.
+Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa.
 
 ### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
@@ -37,7 +39,7 @@ const styles = {
 
 withStyles(styles);
 //         ^^^^^^
-//         Os tipos de propriedade 'flexDirection' são incompatíveis.
+//         Os tipos da propriedade 'flexDirection' são incompatíveis.
 //           Tipo 'string' não pode ser atribuído para o tipo '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
@@ -68,7 +70,7 @@ withStyles(({ palette, spacing }) => ({
 
 Isso ocorre pois o TypeScript [amplia o retorno de tipos de expressões de função](https://github.com/Microsoft/TypeScript/issues/241).
 
-Por causa disso, é recomendado usar a função auxiliar `createStyles` para construir seu objeto de regras de estilo:
+Por causa disso, é recomendado usar a função utilitária `createStyles` para construir seu objeto de regras de estilo:
 
 ```ts
 // Estilos sem dependência
@@ -93,7 +95,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 `createStyles` é apenas a identidade da função; ela não "faz nada" em tempo de execução, apenas auxilia a inferência de tipos em tempo de compilação.
 
-### Consultas de Mídia (Media queries)
+### Consultas de mídia
 
 `withStyles` permite utilizar um objeto de estilos de nível superior com consultas de mídia assim:
 
@@ -139,7 +141,7 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### Incrementando suas propriedades utilizando `WithStyles`
+### Aumentando suas propriedades utilizando `WithStyles`
 
 Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
 
@@ -151,10 +153,10 @@ const styles = (theme: Theme) => createStyles({
 });
 
 interface Props {
-  // non-style props
+  // propriedades comuns
   foo: number;
   bar: boolean;
-  // injected style props
+  // propriedades de estilo injetadas
   classes: {
     root: string;
     paper: string;
@@ -214,17 +216,17 @@ Ao adicionar propriedades customizadas ao `Theme`, você pode continuar a utiliz
 O exemplo a seguir adiciona uma propriedade `appDrawer` que é mesclada na que foi exportada pelo `material-ui`:
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core/styles/createTheme';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']
       breakpoint: Breakpoint
     }
   }
-  // permitir configuração usando `createMuiTheme`
+  // permitir configuração usando `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -239,10 +241,10 @@ E uma fábrica customizada de temas com opções padrão adicionais:
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',
@@ -252,7 +254,7 @@ export default function createMyTheme(options: ThemeOptions) {
 }
 ```
 
-Isso poderia ser usado como:
+Isso poderia ser usado da seguinte maneira:
 
 ```ts
 import createMyTheme from './styles/createMyTheme';
@@ -300,7 +302,7 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
 
 A `prop1` tornou-se necessária para o `GenericCustomComponent` como o `ThirdPartyComponent` tem ela como um requisito.
 
-Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. Se você encontrar um componente que rejeita sua propriedade `component` no TypeScript por favor abra um issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
+Nem todos os componentes suportam totalmente qualquer tipo de componente que você passe. Se você encontrar um componente que rejeita sua propriedade `component` no TypeScript por favor abra uma issue. Há um esforço contínuo para corrigir isso fazendo com que a propriedade component seja genérica.
 
 ## Manipulando `value` e manipuladores de eventos
 

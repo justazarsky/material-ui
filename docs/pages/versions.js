@@ -1,5 +1,4 @@
 import React from 'react';
-import orderBy from 'lodash/orderBy';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import fetch from 'cross-fetch';
@@ -11,6 +10,14 @@ const requireRaw = require.context('!raw-loader!../src/pages/versions', false, /
 
 export default function Page({ demos, docs }) {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+}
+
+function formatVersion(version) {
+  return version
+    .replace('v', '')
+    .split('.')
+    .map((n) => +n + 1000)
+    .join('.');
 }
 
 async function getBranches() {
@@ -26,10 +33,10 @@ async function getBranches() {
 }
 
 Page.getInitialProps = async () => {
-  const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
+  const FILTERED_BRANCHES = ['latest', 'l10n', 'next'];
 
   const branches = await getBranches();
-  let versions = branches.map((n) => n.name);
+  let versions = branches.map((branch) => branch.name);
   versions = versions.filter((value) => FILTERED_BRANCHES.indexOf(value) === -1);
   versions = versions.map((version) => ({
     version,
@@ -46,7 +53,20 @@ Page.getInitialProps = async () => {
     version: 'v0',
     url: 'https://v0.material-ui.com',
   });
-  versions = orderBy(versions, 'version', 'desc');
+  versions = versions.sort((a, b) =>
+    formatVersion(b.version).localeCompare(formatVersion(a.version)),
+  );
+
+  if (
+    branches.find((branch) => branch.name === 'next') &&
+    !versions.find((version) => /beta|alpha/.test(version.version))
+  ) {
+    versions.unshift({
+      version: `v${Number(versions[0].version[1]) + 1} pre-release`,
+      url: 'https://next.material-ui.com',
+    });
+  }
+
   versions = sortedUniqBy(versions, 'version');
 
   const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });

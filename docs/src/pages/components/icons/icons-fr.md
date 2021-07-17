@@ -19,7 +19,7 @@ Material Design has standardized over 1,100 official icons, each in five differe
 
 ### Installation
 
-Install the package in your project directory with:
+Installez le package dans votre répertoire de projet avec:
 
 ```sh
 // with npm
@@ -200,11 +200,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="delete">
-  <SvgIcon>
-    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
-  </SvgIcon>
-</IconButton>
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
+// ...
 ```
 
 ### Icônes de polices décoratives
@@ -221,8 +220,10 @@ import Typography from '@material-ui/core/Typography';
 
 // ...
 
-<Icon>add_circle</Icon>
-<Typography variant="srOnly">Créez un utilisateur</Typography>
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+
+// ...
 ```
 
 ### Référence

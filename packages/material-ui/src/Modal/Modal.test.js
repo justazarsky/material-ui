@@ -4,11 +4,11 @@ import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender, fireEvent, screen, within } from 'test/utils/createClientRender';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createClientRender, fireEvent, within } from 'test/utils/createClientRender';
+import { createTheme } from '@material-ui/core/styles';
 import createMount from 'test/utils/createMount';
 import { ThemeProvider } from '@material-ui/styles';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';
@@ -57,7 +57,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ props: { MuiModal: { container } } });
+      const theme = createTheme({ props: { MuiModal: { container } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>
@@ -158,12 +158,13 @@ describe('<Modal />', () => {
     });
 
     it('should let the user disable backdrop click triggering onClose', () => {
-      const onClose = spy();
+      const onClose = [];
       const { getByTestId } = render(
         <Modal
-          onClose={onClose}
+          onClose={(event, reason) => {
+            onClose.push(reason);
+          }}
           open
-          disableBackdropClick
           BackdropProps={{ 'data-testid': 'backdrop' }}
         >
           <div />
@@ -172,20 +173,7 @@ describe('<Modal />', () => {
 
       getByTestId('backdrop').click();
 
-      expect(onClose).to.have.property('callCount', 0);
-    });
-
-    it('should call through to the user specified onBackdropClick callback', () => {
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropProps={{ 'data-testid': 'backdrop' }}>
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('backdrop').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 1);
+      expect(onClose).to.deep.equal(['backdropClick']);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
@@ -196,16 +184,16 @@ describe('<Modal />', () => {
           </div>
         );
       }
-      const onBackdropClick = spy();
+      const onClose = spy();
       const { getByTestId } = render(
-        <Modal onBackdropClick={onBackdropClick} open BackdropComponent={CustomBackdrop}>
+        <Modal onClose={onClose} open BackdropComponent={CustomBackdrop}>
           <div />
         </Modal>,
       );
 
       getByTestId('inner').click();
 
-      expect(onBackdropClick).to.have.property('callCount', 0);
+      expect(onClose).to.have.property('callCount', 0);
     });
 
     // Test case for https://github.com/mui-org/material-ui/issues/12831
@@ -247,10 +235,9 @@ describe('<Modal />', () => {
 
   describe('handleKeyDown()', () => {
     it('when mounted, TopModal and event not esc should not call given functions', () => {
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
-        <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+        <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
@@ -260,17 +247,15 @@ describe('<Modal />', () => {
         key: 'j', // Not escape
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 0);
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
     it('should call onEscapeKeyDown and onClose', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal open onEscapeKeyDown={onEscapeKeyDownSpy} onClose={onCloseSpy}>
+          <Modal open onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -281,23 +266,16 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 1);
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
     it('should not call onChange when `disableEscapeKeyDown=true`', () => {
       const handleKeyDown = spy();
-      const onEscapeKeyDownSpy = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <div onKeyDown={handleKeyDown}>
-          <Modal
-            open
-            disableEscapeKeyDown
-            onEscapeKeyDown={onEscapeKeyDownSpy}
-            onClose={onCloseSpy}
-          >
+          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
             <div data-testid="modal" tabIndex={-1} />
           </Modal>
         </div>,
@@ -308,7 +286,6 @@ describe('<Modal />', () => {
         key: 'Escape',
       });
 
-      expect(onEscapeKeyDownSpy).to.have.property('callCount', 1);
       expect(onCloseSpy).to.have.property('callCount', 0);
       expect(handleKeyDown).to.have.property('callCount', 1);
     });
@@ -453,92 +430,6 @@ describe('<Modal />', () => {
       expect(initialFocus).toHaveFocus();
     });
 
-    it('should return focus to the modal', () => {
-      const { getByTestId } = render(
-        <Modal open>
-          <div data-testid="modal">
-            <input autoFocus data-testid="auto-focus" />
-          </div>
-        </Modal>,
-      );
-
-      expect(getByTestId('auto-focus')).toHaveFocus();
-
-      initialFocus.focus();
-
-      expect(getByTestId('modal')).toHaveFocus();
-    });
-
-    it('should not return focus to the modal when disableEnforceFocus is true', () => {
-      const { getByTestId } = render(
-        <Modal open disableEnforceFocus>
-          <div>
-            <input autoFocus data-testid="auto-focus" />
-          </div>
-        </Modal>,
-      );
-
-      expect(getByTestId('auto-focus')).toHaveFocus();
-
-      initialFocus.focus();
-
-      expect(initialFocus).toHaveFocus();
-    });
-
-    it('should warn if the modal content is not focusable', () => {
-      const UnfocusableDialog = React.forwardRef((_, ref) => <div ref={ref} />);
-
-      render(
-        <Modal open>
-          <UnfocusableDialog />
-        </Modal>,
-      );
-      expect(consoleErrorMock.callCount()).to.equal(1);
-      expect(consoleErrorMock.messages()[0]).to.include(
-        'Material-UI: The modal content node does not accept focus',
-      );
-    });
-
-    it('should not attempt to focus nonexistent children', () => {
-      const EmptyDialog = () => null;
-
-      render(
-        <Modal open>
-          <EmptyDialog />
-        </Modal>,
-      );
-    });
-
-    it('should loop the tab key', () => {
-      render(
-        <Modal open>
-          <div data-testid="modal">
-            <div>Title</div>
-            <button type="button">x</button>
-            <button type="button">cancel</button>
-            <button type="button">ok</button>
-          </div>
-        </Modal>,
-      );
-
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 13, // Enter
-      });
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 9, // Tab
-      });
-
-      expect(document.querySelector('[data-test="sentinelStart"]')).toHaveFocus();
-
-      initialFocus.focus();
-      fireEvent.keyDown(screen.getByTestId('modal'), {
-        keyCode: 9, // Tab
-        shiftKey: true,
-      });
-
-      expect(document.querySelector('[data-test="sentinelEnd"]')).toHaveFocus();
-    });
-
     describe('', () => {
       let clock;
 
@@ -548,39 +439,6 @@ describe('<Modal />', () => {
 
       afterEach(() => {
         clock.restore();
-      });
-
-      it('contains the focus if the active element is removed', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          // see https://github.com/jsdom/jsdom/issues/2953
-          this.skip();
-        }
-
-        function WithRemovableElement({ hideButton = false }) {
-          return (
-            <Modal open>
-              <div role="dialog">
-                {!hideButton && <button type="button">I am going to disappear</button>}
-              </div>
-            </Modal>
-          );
-        }
-        WithRemovableElement.propTypes = {
-          hideButton: PropTypes.bool,
-        };
-
-        const { getByRole, setProps } = render(<WithRemovableElement />);
-        const dialog = getByRole('dialog');
-        const toggleButton = getByRole('button', { name: 'I am going to disappear' });
-        expect(dialog).toHaveFocus();
-
-        toggleButton.focus();
-        expect(toggleButton).toHaveFocus();
-
-        setProps({ hideButton: true });
-        expect(dialog).not.toHaveFocus();
-        clock.tick(500); // wait for the interval check to kick in.
-        expect(dialog).toHaveFocus();
       });
 
       it('does not steal focus from other frames', function test() {
@@ -646,8 +504,17 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: onRendered', () => {
-    it('should fire', () => {
+  describe('v5 deprecations', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should call onRendered', () => {
       const handleRendered = spy();
 
       render(
@@ -657,6 +524,10 @@ describe('<Modal />', () => {
       );
 
       expect(handleRendered).to.have.property('callCount', 1);
+      expect(console.error.callCount).to.equal(1);
+      expect(console.error.firstCall.args[0]).to.contain(
+        'The prop `onRendered` of `ForwardRef(Modal)` is deprecated. Use the ref instead',
+      );
     });
   });
 

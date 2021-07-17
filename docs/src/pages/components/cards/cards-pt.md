@@ -31,24 +31,24 @@ O conteúdo do cartão pode ser expandido.
 
 ## Mídia
 
-Exemplo de um cartão usando uma imagem para demonstrar a principal ideia do conteúdo.
+Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *background image* para exibir o componente media. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
+Por padrão, nós usamos a combinação de um elemento `<div>` e uma *imagem de fundo* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estas situações:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
 > ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
 
-## Controles de UI
+## Controles da interface do usuário
 
 Ações suplementares dentro do cartão são explicitamente chamadas usando ícones, texto e controles de interface do usuário, normalmente colocados na parte inferior do cartão.
 
-Aqui está um exemplo de um controle de mídia do cartão.
+Aqui está um exemplo de um controle de mídia com cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
 ## Customização
 
-👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://deprecate.mui-treasury.com/components/card).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card).

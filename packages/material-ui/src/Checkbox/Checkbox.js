@@ -5,7 +5,7 @@ import { refType } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
@@ -26,7 +26,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
@@ -42,7 +42,7 @@ export const styles = (theme) => ({
     '&$checked': {
       color: theme.palette.secondary.main,
       '&:hover': {
-        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent',
@@ -64,13 +64,16 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
-    icon = defaultIcon,
+    icon: iconProp = defaultIcon,
     indeterminate = false,
-    indeterminateIcon = defaultIndeterminateIcon,
+    indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
     ...other
   } = props;
+
+  const icon = indeterminate ? indeterminateIconProp : iconProp;
+  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
 
   return (
     <SwitchBase
@@ -87,11 +90,15 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         'data-indeterminate': indeterminate,
         ...inputProps,
       }}
-      icon={React.cloneElement(indeterminate ? indeterminateIcon : icon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      icon={React.cloneElement(icon, {
+        fontSize:
+          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
       })}
-      checkedIcon={React.cloneElement(indeterminate ? indeterminateIcon : checkedIcon, {
-        fontSize: size === 'small' ? 'small' : 'default',
+      checkedIcon={React.cloneElement(indeterminateIcon, {
+        fontSize:
+          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
+            ? size
+            : indeterminateIcon.props.fontSize,
       })}
       ref={ref}
       {...other}

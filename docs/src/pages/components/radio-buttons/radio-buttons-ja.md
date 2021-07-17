@@ -7,7 +7,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 <p class="description">ラジオボタンを使用すると、ユーザーはセットから1つのオプションを選択できます。</p>
 
-ユーザーが利用可能なすべてのオプションを確認する必要がある場合は、 [ラジオボタン](https://material.io/design/components/selection-controls.html#radio-buttons) 使用します。 使用可能なオプションを折りたたむことができる場合は、使用するスペースが少なくて済むため、ドロップダウンメニューを使用することを検討してください。
+In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
 
 ラジオボタンは、デフォルトで最も一般的に使用されるオプションで設定されています。
 
@@ -16,6 +16,8 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 `RadioGroup` は、 `Radio` コンポーネントをグループ化するのに使用される便利なラッパーで、より簡単なAPIと、グループへの適切なキーボードアクセシビリティを提供します。
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
+
+To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
 
 ## Standalone radio buttons
 

@@ -1,5 +1,5 @@
 ---
-title: Button コンポーネント
+title: React Button コンポーネント
 components: Button, IconButton, ButtonBase
 ---
 
@@ -17,11 +17,11 @@ components: Button, IconButton, ButtonBase
 
 ## Contained Buttons
 
-[Contained button](https://material.io/design/components/buttons.html#contained-button)は、力強く、強調と塗りつぶしによって区別されるようなボタンです。 アプリケーションの初歩的なアクションが含まれます。
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) は影と塗りつぶしによって区別される、強調されたボタンです。 アプリ内で強調すべきアクションを含みます。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+`disableElevation`でシャドウを取り除けます。
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
@@ -32,17 +32,27 @@ You can remove the elevation with the `disableElevation` prop.
 - Dialog
 - Card
 
-Cardの中でText Buttonを用いることで、Cardの内容に重点を置くことができます。
+Cardでは、テキストボタンを使用することでCardの内容に重点を置くことができます。
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. 重要なアクションを含みますが、アプリ内では最も重要ではない、といった場合に使われます。
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) は少し強調されたボタンです。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。
 
-Outlined buttonは、Contained buttonと比べると強調が弱く、 Text buttonと比べると強調の強いボタンです。
+Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い強調をします。
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
+
+## Handling clicks
+
+全てのコンポーネントは `onClick`を受け付けます。これはルートのDOM要素に適用されます。
+
+```jsx
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
+```
+
+ドキュメントでは(多すぎるので)ネイティブpropsに関しては [言及していない](/guides/api/#native-properties)ことに注意してください。
 
 ## Upload button
 
@@ -54,37 +64,37 @@ Outlined buttonは、Contained buttonと比べると強調が弱く、 Text butt
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## アイコンとラベルの付いたButton
+## Buttons with icons and label
 
-プレーンテキストよりもロゴを認識しやすいため、アプリケーションのUXを向上させるために特定のボタンのアイコンを表示したい場合があります。 たとえば、削除ボタンがある場合は、ゴミ箱アイコンでラベルを付けることができます。
+ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
-アイコンボタンは通常、アプリバーとツールバーにあります。
+アイコンだけのボタンは、App BarやToolbarでよく使われます。
 
-アイコンは、アイテムへの星の追加や削除など、単一の選択肢を選択または選択解除できるトグルボタンにも適しています。
+アイコンは、アイテムを一つ選択したり、アイテムに星を追加または削除するなど選択/解除できるトグルボタンにも適しています。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
 ## カスタムButton
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/styles/button)を確認できます。
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/button) を確認すると良いでしょう。
 
 ## 複雑なButton
 
-テキストボタン、包含ボタン、フローティングアクションボタン、およびアイコンボタンは、同じコンポーネント（ `ButtonBase`上に構築されています。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。
+テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを発火することです。 The `ButtonBase` component provides a property to handle this use case: `component`. ただし、特定のフォーカスについては` ButtonBase `には提供されているコンポーネントのDOMノードが必要です。 コンポーネントにrefを添付し、コンポーネントが基のDOMノードにrefを継承することを期待して成り立っています。 多くのインタラクティブなコンポーネントが `ButtonBase` に依存していることから、どこでもこの機能を使うことができるはずです。
 
 こちらは [react-routerとの統合例](/guides/composition/#button).
 
@@ -92,11 +102,11 @@ Outlined buttonは、Contained buttonと比べると強調が弱く、 Text butt
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+ButtonBaseコンポーネントは無効化時に、 `pointer-events: none;` としています。無効化されたカーソルが出現することを抑制するためです。
 
-If you wish to use `not-allowed`, you have two options:
+`not-allowed`を意図的に使用したい場合、２つの選択肢があります。
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS だけ**. `<button>` エレメントの無効化時のポインターイベントを削除できます:
 
   ```css
   .MuiButtonBase-root:disabled {
@@ -105,12 +115,12 @@ If you wish to use `not-allowed`, you have two options:
   }
   ```
 
-However:
+ただし:
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- [tooltips を無効化したエレメント](/components/tooltips/#disabled-elements)で表示する必要がある時、 `pointer-events: none;` に戻す必要があります。
+- ボタン要素以外をレンダリングする時、カーソルが変更されない時がある。例えば、link `<a>`要素。
 
-2. **DOM change**. You can wrap the button:
+2. **DOM 変更**. Buttonコンポーネントを囲う。
 
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
@@ -120,4 +130,4 @@ However:
   </span>
   ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+どのような要素でも対応できるメリットがあります。例えば、link `<a>` 要素。

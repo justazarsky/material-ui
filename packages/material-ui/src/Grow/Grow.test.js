@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Grow from './Grow';
 import {
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
@@ -140,7 +140,7 @@ describe('<Grow />', () => {
 
       it('should delay based on height when timeout is auto', () => {
         const handleEntered = spy();
-        const theme = createMuiTheme({
+        const theme = createTheme({
           transitions: {
             getAutoHeightDuration: (n) => n,
           },

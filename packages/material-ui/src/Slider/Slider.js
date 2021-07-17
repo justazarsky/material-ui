@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade, lighten, darken } from '../styles/colorManipulator';
+import { alpha, lighten, darken } from '../styles/colorManipulator';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
@@ -252,13 +252,13 @@ export const styles = (theme) => ({
       bottom: -15,
     },
     '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
         boxShadow: 'none',
       },
     },
     '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.primary.main, 0.16)}`,
     },
     '&$disabled': {
       width: 8,
@@ -285,10 +285,10 @@ export const styles = (theme) => ({
   /* Styles applied to the thumb element if `color="secondary"`. */
   thumbColorSecondary: {
     '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
     '&$active': {
-      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.secondary.main, 0.16)}`,
+      boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.secondary.main, 0.16)}`,
     },
   },
   /* Pseudo-class applied to the thumb element if it's active. */
@@ -385,7 +385,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   const range = Array.isArray(valueDerived);
-  const instanceRef = React.useRef();
   let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
   values = values.map((value) => clamp(value, min, max));
   const marks =
@@ -394,10 +393,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           value: min + step * index,
         }))
       : marksProp || [];
-
-  instanceRef.current = {
-    source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
-  };
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
@@ -842,7 +837,7 @@ Slider.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The default element value. Use when the component is not controlled.
    */

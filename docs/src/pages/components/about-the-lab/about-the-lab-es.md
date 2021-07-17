@@ -36,3 +36,21 @@ npm install @material-ui/core
 // usando yarn
 yarn add @material-ui/core
 ```
+
+## TypeScript
+
+Con el fin de beneficiarse de la [sobrescritura de CSS](/customization/globals/#css) y de la [customización de las propiedades por defecto](/customization/globals/#default-props), los usuarios de TypeScript necesitan importar los siguientes tipos. Internamente, utiliza [ampliación de módulos](/guides/typescript/#customization-of-theme) para extender la estructura por defecto del tema con los componentes de extensión disponibles en el laboratorio.
+
+```tsx
+import type '@material-ui/lab/themeAugmentation';
+
+const theme = createTheme({
+  overrides: {
+    MuiTimeline: {
+      root: {
+        backgroundColor: 'red',
+      },
+    },
+  },
+});
+```

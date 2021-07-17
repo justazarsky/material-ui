@@ -6,18 +6,19 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    top: 70,
+    top: 70 + BANNER_HEIGHT,
     // Fix IE 11 position sticky issue.
-    marginTop: 70,
+    marginTop: 70 + BANNER_HEIGHT,
     width: 175,
     flexShrink: 0,
     position: 'sticky',
-    height: 'calc(100vh - 70px)',
+    height: `calc(100vh - 70px - ${BANNER_HEIGHT}px)`,
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 2, 0),
     display: 'none',
@@ -52,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2.5),
   },
   active: {},
+  hiring: {
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(3),
+    display: 'block',
+    '& img': {
+      display: 'block',
+    },
+  },
+  hiringLearn: {
+    display: 'block',
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.primary,
+  },
 }));
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
@@ -96,6 +110,8 @@ function useThrottledOnScroll(callback, delay) {
     };
   }, [throttledCallback]);
 }
+
+// const timezone = (new Date().getTimezoneOffset() / 60) * -1;
 
 export default function AppTableOfContents(props) {
   const { items } = props;
@@ -220,6 +236,17 @@ export default function AppTableOfContents(props) {
               </li>
             ))}
           </Typography>
+          {/**
+          <NoSsr>
+            {timezone >= 5 && timezone <= 6 ? null : (
+              <Link href="/company/lead-designer/" underline="none" className={classes.hiring}>
+                <img src="/static/hiring-toc.png" alt="" loading="lazy" width={159} height={119} />
+                {'We are hiring a Lead designer'}
+                <span className={classes.hiringLearn}>Learn more &rarr;</span>
+              </Link>
+            )}
+          </NoSsr>
+          */}
         </React.Fragment>
       ) : null}
     </nav>

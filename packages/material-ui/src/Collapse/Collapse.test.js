@@ -2,13 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import Collapse from './Collapse';
 import {
   ThemeProvider,
-  createMuiTheme,
+  createTheme,
   unstable_createMuiStrictModeTheme as createMuiStrictModeTheme,
 } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
@@ -37,11 +37,11 @@ describe('<Collapse />', () => {
 
   it('should render a container around the wrapper', () => {
     const { container } = render(
-      <Collapse {...defaultProps} classes={{ container: 'woofCollapse1' }} />,
+      <Collapse {...defaultProps} classes={{ root: 'woofCollapse1' }} />,
     );
     const collapse = container.firstChild;
     expect(collapse.tagName).to.equal('DIV');
-    expect(collapse).to.have.class(classes.container);
+    expect(collapse).to.have.class(classes.root);
     expect(collapse).to.have.class('woofCollapse1');
   });
 
@@ -152,7 +152,7 @@ describe('<Collapse />', () => {
     });
 
     it('should delay based on height when timeout is auto', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         transitions: {
           getAutoHeightDuration: (n) => n,
         },
@@ -251,25 +251,23 @@ describe('<Collapse />', () => {
     });
   });
 
-  describe('prop: collapsedHeight', () => {
-    const collapsedHeight = '10px';
+  describe('prop: collapsedSize', () => {
+    const collapsedSize = '10px';
 
     it('should work when closed', () => {
-      const { container } = render(
-        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} />,
-      );
+      const { container } = render(<Collapse {...defaultProps} collapsedSize={collapsedSize} />);
       const collapse = container.firstChild;
-      expect(collapse.style.minHeight).to.equal(collapsedHeight);
+      expect(collapse.style.minHeight).to.equal(collapsedSize);
     });
 
     it('should be taken into account in handleExiting', () => {
       const handleExiting = spy();
       const { setProps } = render(
-        <Collapse {...defaultProps} collapsedHeight={collapsedHeight} onExiting={handleExiting} />,
+        <Collapse {...defaultProps} collapsedSize={collapsedSize} onExiting={handleExiting} />,
       );
       setProps({ in: false });
 
-      expect(handleExiting.args[0][0].style.height).to.equal(collapsedHeight);
+      expect(handleExiting.args[0][0].style.height).to.equal(collapsedSize);
     });
   });
 

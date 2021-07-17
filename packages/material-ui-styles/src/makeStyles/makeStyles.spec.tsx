@@ -23,12 +23,12 @@ import { createStyles, makeStyles } from '@material-ui/styles';
 
   const MyComponent = (props: MyComponentProps) => {
     const { color, message } = props;
-    // Expected 1 argument, but got 0
-    const emptyClasses = useMyStyles(); // $ExpectError
+    // @ts-expect-error Expected 1 argument, but got 0
+    const emptyClasses = useMyStyles();
     const classes = useMyStyles(props);
-    // $ExpectError
+    // @ts-expect-error
     const invalidClasses = useMyStyles({ colourTypo: 'red' });
-    // $ExpectError
+    // @ts-expect-error
     const undefinedClassName = classes.toot;
 
     return (
@@ -81,7 +81,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   );
 
   const UnsafeProps = (props: StyleProps) => {
-    // would be nice to have at least a compile time error because we forgot the argument
+    // @ts-expect-error
     const classes = useUnsafeProps(); // runtime: Can't read property color of undefined
     // but this would pass anyway
     const alsoClasses = useUnsafeProps(undefined); // runtime: Can't read property color of undefined
@@ -108,7 +108,7 @@ import { createStyles, makeStyles } from '@material-ui/styles';
   });
 
   makeStyles(style, {
-    // $ExpectError
+    // @ts-expect-error
     defaultTheme: invalidCustomTheme,
   });
 

@@ -1,9 +1,9 @@
 ---
-title: CheckBox コンポーネント
+title: React Checkbox コンポーネント
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkbox (チェックボックス)
+# Checkbox チェックボックス
 
 <p class="description">Checkboxコンポーネントにより、ユーザーの選択が一つ以上の項目から設定します。</p>
 
@@ -17,7 +17,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Checkbox with FormControlLabel
 
-`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
+`Checkbox` は `FormControlLabel` コンポーネントによってラベルを付けることができます。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
@@ -39,10 +39,12 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox) を確認すると良いでしょう。
+
 ## When to use
 
-- [Checkboxと Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
-- [Checkboxと スイッチ](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxと スイッチ Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxと スイッチ Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## アクセシビリティ
 

@@ -2,7 +2,7 @@
 
 <p class="description">While you can use the JSS based styling solution provided by Material-UI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
-This guide aims to document the most popular alternatives, but you should find that the principals applied here can be adapted to other libraries. There are examples for the following styling solutions:
+This guide aims to document the most popular alternatives, but you should find that the principles applied here can be adapted to other libraries. There are examples for the following styling solutions:
 
 - [Plain CSS](#plain-css)
 - [Глобальный CSS](#global-css)
@@ -55,12 +55,21 @@ export default function PlainCssButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
+      */}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ### Deeper elements
@@ -145,12 +154,21 @@ export default function GlobalCssButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
+      */}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ## Styled Components
@@ -194,12 +212,15 @@ export default function StyledComponents() {
 **Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+*/}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+      */}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Avoid the usage of `!important`.
@@ -270,7 +291,7 @@ export default function StyledComponentsDeep() {
 }
 ```
 
-### Theme
+### Темы
 
 Material-UI has a rich theme structure that you can leverage for the color manipulations, the transitions, the media queries, and more.
 
@@ -371,12 +392,15 @@ export default function CssModulesButton() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+*/}
+</StylesProvider>
+      import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+      */}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
 ### Deeper elements
@@ -465,15 +489,24 @@ export default function EmotionCSS() {
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Now, you can override Material-UI's styles. */}
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
+      */}
 </StylesProvider>
+      Now, you can override Material-UI's styles. Styled components can override Material-UI's styles.
 ```
 
-### Theme
+### Темы
 
 Material-UI has a rich theme structure that you can leverage for the color manipulations, the transitions, the media queries, and more.
 

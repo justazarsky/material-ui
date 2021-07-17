@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import clsx from 'clsx';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import withStyles from '../styles/withStyles';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -10,6 +11,7 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import TablePaginationActions from './TablePaginationActions';
+import useId from '../utils/unstable_useId';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
@@ -67,7 +69,7 @@ export const styles = (theme) => ({
 });
 
 const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`;
+  `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -87,8 +89,10 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
     nextIconButtonText = 'Next page',
-    onChangePage,
-    onChangeRowsPerPage,
+    onChangePage: onChangePageProp,
+    onPageChange: onPageChangeProp,
+    onChangeRowsPerPage: onChangeRowsPerPageProp,
+    onRowsPerPageChange: onRowsPerPageChangeProp,
     page,
     rowsPerPage,
     rowsPerPageOptions = defaultRowsPerPageOptions,
@@ -96,12 +100,17 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     ...other
   } = props;
 
+  const onChangePage = onChangePageProp || onPageChangeProp;
+  const onChangeRowsPerPage = onChangeRowsPerPageProp || onRowsPerPageChangeProp;
+
   let colSpan;
 
   if (Component === TableCell || Component === 'td') {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
+  const selectId = useId();
+  const labelId = useId();
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
@@ -109,7 +118,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="body2" className={classes.caption}>
+          <Typography color="inherit" variant="body2" className={classes.caption} id={labelId}>
             {labelRowsPerPage}
           </Typography>
         )}
@@ -122,7 +131,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             input={<InputBase className={clsx(classes.input, classes.selectRoot)} />}
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
-            inputProps={{ 'aria-label': labelRowsPerPage }}
+            id={selectId}
+            labelId={labelId}
             {...SelectProps}
           >
             {rowsPerPageOptions.map((rowsPerPageOption) => (
@@ -140,7 +150,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
-            count,
+            count: count === -1 ? -1 : count,
             page,
           })}
         </Typography>
@@ -157,7 +167,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             'aria-label': nextIconButtonText,
             ...nextIconButtonProps,
           }}
-          onChangePage={onChangePage}
+          onPageChange={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
         />
@@ -199,7 +209,7 @@ TablePagination.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The total number of rows.
    *
@@ -218,7 +228,7 @@ TablePagination.propTypes = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
-  labelRowsPerPage: PropTypes.string,
+  labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
@@ -234,14 +244,32 @@ TablePagination.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
+   * @deprecated Use the onPageChange prop instead.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onChangePage: deprecatedPropType(PropTypes.func, 'Use the `onPageChange` prop instead.'),
+  /**
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @deprecated Use the onRowsPerPageChange prop instead.
+   */
+  onChangeRowsPerPage: deprecatedPropType(
+    PropTypes.func,
+    'Use the `onRowsPerPageChange` prop instead.',
+  ),
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onPageChange: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback.
    */
-  onChangeRowsPerPage: PropTypes.func,
+  onRowsPerPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */

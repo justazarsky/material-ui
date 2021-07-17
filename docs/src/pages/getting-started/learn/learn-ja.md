@@ -1,8 +1,8 @@
 # Material-UIを学ぶ
 
-<p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
+<p class="description">Material-UIは初めてですか？ 何から始めればいいのかを知っていれば、簡単に習得できますよ! このガイドを読めばすぐに開始できます。</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
+Material-UIの開発者は、さまざまなバックグラウンドを持ち、さまざまな学習スタイルを持っています。 より理論的または実践的なアプローチのどちらを好むかにかかわらず、このセクションが参考になることを願っています。 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
 ## 最初の例
 
@@ -24,6 +24,8 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
 
 - **Introduction to Material-UI**: a series of videos covering all the important Material-UI components. 
   - 📹 [動画](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
+- **Customize Material-UI for your project**: a look at how you can customize Material-UI to align with your company identity (design system) and products 
+  - 📹 [動画](https://www.youtube.com/watch?v=bDkB3LoQKxs)
 - **Meet Material-UI—あなたのお気に入りの新しいユーザインタフェースライブラリ**: Material-UIのいくつかの重要な概念をカバーしながら、Todo MVCの構築を案内するブログ投稿。 
   - 📝 [ブログ記事](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
 - **Learn React & Material-UI**: Material-UIの重要なコンポーネントの全てをカバーするシリーズの動画です。 
@@ -36,13 +38,13 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
 
 ### 有料
 
+- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
+  
+  - 💻[コース](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
 - **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
   
   - 📹[コースの予告編を見る](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻[コース](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with Material-UI and React.
-  
-  - 💻[コース](https://click.linksynergy.com/deeplink?id=IVuPfk1F/Ow&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fimplement-high-fidelity-designs-with-material-ui-and-reactjs%2F)
 - **Cookbook**: Material-UIを使用したReactアプリケーションにMaterial Designの原則を実装することで、現代的なアプリケーションを構築します。
   
   - 📘 [書籍](https://www.amazon.com/gp/product/1789615224/)

@@ -4,7 +4,7 @@
 
 ## Aplicando densidad
 
-Esta sección explica cómo aplicar densidad. No cubre todos los casos de uso posibles, ni consideraciones que debas tomar en cuenta para usar densidad en tu aplicación. Las guias Material Design tienen una [guia extensa](https://material.io/design/layout/applying-density.html#typographic-density) que cubre estos temas con mayor detalle.
+Esta sección explica cómo aplicar densidad. Las guias Material Design tienen una [guia extensa](https://material.io/design/layout/applying-density.html#typographic-density) que cubre estos temas con mayor detalle. No cubre todos los casos de uso posibles, ni consideraciones que debas tomar en cuenta para usar densidad en tu aplicación.
 
 ## Implementando la densidad
 
@@ -37,7 +37,7 @@ If you enable high density a custom theme is applied to the docs. This theme is 
 The theme is configured with the following options:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiButton: {
       size: 'small',

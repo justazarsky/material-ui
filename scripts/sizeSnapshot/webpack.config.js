@@ -62,9 +62,9 @@ async function getSizeLimitBundles() {
     },
     ...coreComponents,
     {
-      name: '@material-ui/core/styles/createMuiTheme',
+      name: '@material-ui/core/styles/createTheme',
       webpack: true,
-      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
+      path: 'packages/material-ui/build/esm/styles/createTheme.js',
     },
     {
       name: 'colorManipulator',
@@ -86,6 +86,11 @@ async function getSizeLimitBundles() {
       name: '@material-ui/core/useScrollTrigger',
       webpack: true,
       path: 'packages/material-ui/build/esm/useScrollTrigger/index.js',
+    },
+    {
+      name: '@material-ui/utils',
+      webpack: true,
+      path: 'packages/material-ui-utils/build/esm/index.js',
     },
   ];
 }

@@ -18,7 +18,10 @@ import { ExpansionPanel } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+⚠️ The ExpansionPanel component was renamed to Accordion to use a more common naming convention.
 
+You should use `import { Accordion } from '@material-ui/core'`
+or `import Accordion from '@material-ui/core/Accordion'`.
 
 ## Component name
 
@@ -28,7 +31,7 @@ The `MuiExpansionPanel` name can be used for providing [default props](/customiz
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the expansion panel. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">node</span> |  | The content of the expansion panel. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, expands the panel by default. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the panel will be displayed in a disabled state. |
@@ -63,8 +66,4 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Demos
-
-- [Expansion Panels](/components/expansion-panels/)
 

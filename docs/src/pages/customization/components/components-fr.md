@@ -187,11 +187,11 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[When should I use inline-style vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-css)
 
 ## 2. Variation dynamique pour une situation ponctuelle
 
-You have learned how to override the style of a Material-UI component in the previous section. Now, let's see how we can make these overrides dynamic. Here are five alternatives; each has it's pros and cons.
+You have learned how to override the style of a Material-UI component in the previous section. Now, let's see how we can make these overrides dynamic. Here are five alternatives; each has its pros and cons.
 
 ### Dynamic CSS
 
@@ -238,7 +238,7 @@ The demos of this section covers how to the change the button's font size.
 You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       fontSize: '1rem',
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Global CSS override
 
-You can also customize all instances of a component with CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. It's very similar to how you would customize Bootstrap.
+You can also customize all instances of a component with CSS. It's very similar to how you would customize Bootstrap. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 
 ```jsx
 const GlobalCss = withStyles({
@@ -276,7 +276,7 @@ const GlobalCss = withStyles({
 You can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM. Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
 
 ```jsx
-const theme = createMuiTheme({
+const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {

@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import createMount from 'test/utils/createMount';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PopperJs from 'popper.js';
@@ -22,7 +22,7 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    rtlTheme = createMuiTheme({
+    rtlTheme = createTheme({
       direction: 'rtl',
     });
   });
@@ -52,7 +52,7 @@ describe('<Popper />', () => {
           </Popper>
         </ThemeProvider>,
       );
-      expect(renderSpy.callCount).to.equal(2); // 2 for strict mode
+      expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
       expect(renderSpy.args[0][0]).to.equal('top');
     });
 

@@ -1,13 +1,17 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { alpha, withStyles } from '@material-ui/core/styles';
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
     display: 'block',
-    backgroundColor: theme.palette.action.hover,
+    // Create a "on paper" color with sufficient contrast retaining the color
+    backgroundColor: alpha(
+      theme.palette.text.primary,
+      theme.palette.type === 'light' ? 0.11 : 0.13,
+    ),
     height: '1.2em',
   },
   /* Styles applied to the root element if `variant="text"`. */
@@ -71,6 +75,20 @@ export const styles = (theme) => ({
       transform: 'translateX(100%)',
     },
   },
+  /* Styles applied when the component is passed children. */
+  withChildren: {
+    '& > *': {
+      visibility: 'hidden',
+    },
+  },
+  /* Styles applied when the component is passed children and no width. */
+  fitContent: {
+    maxWidth: 'fit-content',
+  },
+  /* Styles applied when the component is passed children and no height. */
+  heightAuto: {
+    height: 'auto',
+  },
 });
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
@@ -85,6 +103,8 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     ...other
   } = props;
 
+  const hasChildren = Boolean(other.children);
+
   return (
     <Component
       ref={ref}
@@ -93,6 +113,9 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         classes[variant],
         {
           [classes[animation]]: animation !== false,
+          [classes.withChildren]: hasChildren,
+          [classes.fitContent]: hasChildren && !width,
+          [classes.heightAuto]: hasChildren && !height,
         },
         className,
       )}
@@ -113,6 +136,10 @@ Skeleton.propTypes = {
    */
   animation: PropTypes.oneOf(['pulse', 'wave', false]),
   /**
+   * Optional children to infer width and height from.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
@@ -125,7 +152,7 @@ Skeleton.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.

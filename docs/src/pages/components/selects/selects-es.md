@@ -1,5 +1,5 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
 ---
 
@@ -17,7 +17,7 @@ Los menús son colocados sobre sus emisores de elementos tales que el elemento d
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). Esto pretende ser una versión mejorada de los paquetes "react-select" y "downshift".
 
 ## Selección nativa
 
@@ -27,15 +27,17 @@ Dado que la experiencia del usuario puede mejorarse en móvil usando la selecci�
 
 ## Campos de texto
 
-El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
+El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. The first step is to style the `InputBase` component.
 
 ## Selecciones personalizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Here are some examples of customizing the component.
 
 The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
+
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/select).
 
 ## Multiple Select
 

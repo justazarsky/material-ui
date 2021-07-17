@@ -1,9 +1,9 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
 ---
 
-# Select (選択)
+# Select 選択
 
 <p class="description">選択コンポーネントは、オプションのリストからユーザー提供の情報を収集するために使用されます。</p>
 
@@ -17,15 +17,15 @@ components: Select, NativeSelect
 
 選択コンポーネントはネイティブの `<select>` 要素に入れ替えられます。
 
-コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 It's meant to be an improved version of the "react-select" and "downshift" packages.
+コンボボックス、複数選択、自動補完、非同期、作成可能のサポートといったさらに高度な機能をお探しなら、[`Autocomplete`コンポーネント](/components/autocomplete/)を参照してください。 "react-select"と"downshift"というパッケージの改良版であることを意識しています。
 
-## ネイティブを選択
+## ネイティブ選択
 
 プラットフォームのネイティブ選択を使用することで、モバイルでのユーザーエクスペリエンスを向上させることができます。 このようなパターンを許容します。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## テキストフィールド
 
 `TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 このセクション</a>で、選択モード 例を見つけることができます。</p> 
 
@@ -37,11 +37,13 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/select) を確認すると良いでしょう。
+
 ## 複数選択
 
 `Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
@@ -57,7 +59,7 @@ Material Designの仕様では推奨されていませんが、ダイアログ�
 
 ## Grouping
 
-Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+`ListSubheader`コンポーネントまたはネイティブの`<optgroup>`要素でカテゴリを表示します。
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 

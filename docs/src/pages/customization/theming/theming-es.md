@@ -1,6 +1,6 @@
 # Temática
 
-<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipogradía y mucho más.</p>
+<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipografía y mucho más.</p>
 
 El tema especifica el color de los componentes, las obscuridad de las superficies, nivel de la sombra, opacidad apropiada de la tinta de los elementos, etc.
 
@@ -12,7 +12,7 @@ Para promover una mayor coherencia entre las aplicaciones; claro y oscuro son lo
 
 Si desea personalizar el tema, deberá de usar el componente ` ThemeProvider ` para inyectar un tema en su aplicación. Sin embargo, esto es opcional; Los componentes de material-UI vienen con un tema predeterminado.
 
-`ThemeProvider` se basa en la característica de contexto de React para pasar el tema hacia los componentes que estén por dejabo. así que tendrá que asegurar que `ThemeProvider` sea un componente padre de los componentes que trata de personalizar. Puede aprender más acerca de esto en la [sección API](/styles/api/#themeprovider).
+Puede aprender más acerca de esto en la [sección API](/styles/api/#themeprovider). Puede aprender más acerca de esto en la [sección API](/styles/api/#themeprovider).
 
 ## Variables de configuración de Tema
 
@@ -29,7 +29,7 @@ Puede consultar la sección de [Tema predeterminado](/customization/default-them
 
 ### Variables personalizadas
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). Puede ser conveniente agregar variables adicionales al tema para que pueda usarlas en cualquier lugar. Por ejemplo:
+Al usar el tema de Material-UI con la [solución de estilo](/styles/basics/) o [cualquier otra](/guides/interoperability/#themeprovider), puede ser conveniente añadir variables adicionales al tema, para que se puedan usar en todas partes. Por ejemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -56,7 +56,7 @@ Las implicaciones de rendimiento de anidar el componente ` ThemeProvider ` está
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generar un tema en base a las opciones recibidas.
 
@@ -72,17 +72,18 @@ Generar un tema en base a las opciones recibidas.
 #### Ejemplos
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
-    primary: purple,
-    secondary: green,
-  },
-  status: {
-    danger: 'orange',
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: green[500],
+    },
   },
 });
 ```
@@ -96,7 +97,7 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- Array of [breakpoints](/customization/breakpoints/) (identifiers). `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.
@@ -108,9 +109,9 @@ Generate responsive typography settings based on the options received.
 #### Ejemplos
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -128,7 +129,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 The component used in the `component` prop of the following components need to forward their ref:
 
-- [`Collapse`](/api/Collapse/)
+- [`Collapse`](/api/collapse/)
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
 
@@ -136,9 +137,9 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 
 The `children` of the following components need to forward their ref:
 
-- [`Fade`](/api/Fade/)
-- [`Grow`](/api/Grow/)
-- [`Zoom`](/api/Zoom/)
+- [`Fade`](/api/fade/)
+- [`Grow`](/api/grow/)
+- [`Zoom`](/api/zoom/)
 
 ```diff
 -function TabPanel(props) {
@@ -156,7 +157,7 @@ Otherwise the component will not animate properly and you'll encounter the warni
 
 #### Disable StrictMode compatibility partially
 
-If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable. You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
+Si todavía ve `Error: Function component cannot be given refs` entonces es probable que usted esté usando componentes de terceros, por lo que las correcciones anteriores pueden no ser aplicables. Puede arreglar esto usando `disablleStrictModeCompat` You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
 
 ```diff
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
@@ -193,8 +194,18 @@ function Fade() {
 
 #### Ejemplos
 
-```js import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+```js
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
-function App() { return ( <React.StrictMode> <ThemeProvider theme={theme}> <LandingPage /> </ThemeProvider> </React.StrictMode>, ); } ````
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
+}
+```

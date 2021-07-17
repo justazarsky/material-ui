@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { act, createClientRender, fireEvent, screen } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
@@ -78,14 +78,14 @@ describe('<Select />', () => {
     );
   });
 
-  it('should have an input with [type="hidden"] by default', () => {
+  it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
         <MenuItem value="10">Ten</MenuItem>
       </Select>,
     );
 
-    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+    expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
   it('should ignore onBlur when the menu opens', () => {
@@ -215,16 +215,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
@@ -343,7 +333,7 @@ describe('<Select />', () => {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>,
         );
-        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
         expect(console.warn.args[0][0]).to.include(
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         );
@@ -550,7 +540,7 @@ describe('<Select />', () => {
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
-        <Select MenuProps={{ onEntered, transitionDuration: 100 }} value="10">
+        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
@@ -960,14 +950,14 @@ describe('<Select />', () => {
     });
 
     it('can be labelled with a <label />', () => {
-      const { getByLabelText } = render(
+      const { getByRole } = render(
         <React.Fragment>
           <label htmlFor="select">A select</label>
           <Select id="select" native />
         </React.Fragment>,
       );
 
-      expect(getByLabelText('A select')).to.have.property('tagName', 'SELECT');
+      expect(getByRole('combobox', { name: 'A select' })).to.have.property('tagName', 'SELECT');
     });
   });
 
@@ -1001,5 +991,57 @@ describe('<Select />', () => {
     fireEvent.click(options[0]);
 
     expect(onClick.callCount).to.equal(1);
+  });
+
+  // https://github.com/testing-library/react-testing-library/issues/322
+  // https://twitter.com/devongovett/status/1248306411508916224
+  it('should handle the browser autofill event and simple testing-library API', () => {
+    const onChangeHandler = spy();
+    const { container, getByRole } = render(
+      <Select onChange={onChangeHandler} defaultValue="germany" name="country">
+        <MenuItem value="france">France</MenuItem>
+        <MenuItem value="germany">Germany</MenuItem>
+        <MenuItem value="china">China</MenuItem>
+      </Select>,
+    );
+    fireEvent.change(container.querySelector('input[name="country"]'), {
+      target: {
+        value: 'france',
+      },
+    });
+
+    expect(onChangeHandler.calledOnce).to.equal(true);
+    expect(getByRole('button')).to.have.text('France');
+  });
+
+  it('should support native form validation', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // see https://github.com/jsdom/jsdom/issues/123
+      this.skip();
+    }
+
+    const handleSubmit = spy((event) => {
+      // avoid karma reload.
+      event.preventDefault();
+    });
+    const Form = (props) => (
+      <form onSubmit={handleSubmit}>
+        <Select required name="country" {...props}>
+          <MenuItem value="" />
+          <MenuItem value="france">France</MenuItem>
+          <MenuItem value="germany">Germany</MenuItem>
+          <MenuItem value="china">China</MenuItem>
+        </Select>
+        <button type="submit" />
+      </form>
+    );
+    const { container, setProps } = render(<Form value="" />);
+
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
+
+    setProps({ value: 'france' });
+    fireEvent.click(container.querySelector('button[type=submit]'));
+    expect(handleSubmit.callCount).to.equal(1);
   });
 });

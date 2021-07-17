@@ -1,5 +1,6 @@
 ---
-components: Typography
+title: React Typography component
+components: Typografie
 ---
 
 # Typography
@@ -22,19 +23,19 @@ Unten ist ein Beispiel für ein Link-Markup zum Laden der Roboto-Schriftart von 
 
 ## Mit npm installieren
 
-Sie können [diese installieren](https://www.npmjs.com/package/typeface-roboto) durch den folgenden Befehl im Terminal:
+Sie können [diese installieren](https://www.npmjs.com/package/@fontsource/roboto) durch den folgenden Befehl im Terminal:
 
-`npm install typeface-roboto --save`
+`npm install @fontsource/roboto`
 
 Dann können Sie es in Ihren Einstiegspunkt importieren.
 
 ```js
-import 'typeface-roboto';
+'fontsource-roboto'; importieren
 ```
 
-Weitere Informationen finden Sie im [Schriftprojekt](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto).
+For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
-⚠️ Seien Sie vorsichtig, wenn Sie diesen Ansatz verwenden. Stellen Sie sicher, dass Ihr Bundler nicht alle Schriftvarianten läd (100/300/400/500/700/900, kursiv / normal, SVG / woff). Durch das Einbetten aller Schriftdateien kann die Größe Ihres Bundles erheblich erhöht werden. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️ Seien Sie vorsichtig, wenn Sie diesen Ansatz verwenden. Stellen Sie sicher, dass Ihr Bundler nicht alle Schriftvarianten läd (100/300/400/500/700/900, kursiv / normal, SVG / woff). Fontsource can be configured to load specific subsets, weights and styles. Durch das Einbetten aller Schriftdateien kann die Größe Ihres Bundles erheblich erhöht werden. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Komponente
 
@@ -42,7 +43,7 @@ Weitere Informationen finden Sie im [Schriftprojekt](https://github.com/KyleAMat
 
 ## Theme
 
-In einigen Situationen können Sie möglicherweise die Komponente `Typography` nicht benutzen. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
+In einigen Situationen können Sie möglicherweise die Komponente `Typography` nicht benutzen. Hoffentlich können Sie die Hauptfunktionalitäten der [`Typografie`](/customization/default-theme/?expand-path=$.typography) des Themas nutzen.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
@@ -53,16 +54,16 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1.
 ```
 
 - Sie können das Mapping [global mit dem Theme](/customization/globals/#default-props) ändern:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {

@@ -1,5 +1,5 @@
 ---
-title: Autocomplete React-Komponente
+title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 ---
 
@@ -9,8 +9,8 @@ components: TextField, Popper, Autocomplete
 
 Das Widget ist nützlich, um den Wert eines einzeiligen Textfeldes in einem von zwei Arten von Szenarien zu setzen:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. Der Wert für das Textfeld muss aus einer vordefinierten Menge zulässiger Werte ausgewählt werden, z. B. ein Standortfeld, welches einen gültigen Standortnamen enthalten muss: [Combo Box](#combo-box).
+2. Das Textfeld kann beliebige Werte enthalten, aber es ist vorteilhaft, dem Benutzer mögliche Werte vorzuschlagen, z. B ein Suchfeld, welches ähnliche oder frühere Suchen vorschlägt, um den Suchvorgang für den Benutzer zu beschleunigen: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
@@ -78,7 +78,7 @@ You could also display a dialog when the user wants to add a new value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
@@ -136,7 +136,15 @@ Fancy smaller inputs? Verwenden Sie die `size` Prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Angepasste Autovervollständigung
+## Customizations
+
+### Custom input
+
+The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+
+{{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
+
+### GitHub's picker
 
 Diese Demo reproduziert die Label-Auswahl von GitHub:
 
@@ -168,7 +176,7 @@ import { createFilterOptions } from '@material-ui/lab/Autocomplete';
   - `config.limit` (*Number* [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-  - `config.trim ` (*Boolean* [optional]): Standardeinstellung ist `false`. Abschließende Leerzeichen entfernen.
+  - `config.trim` (*Boolean* [optional]): Standardeinstellung ist `false`. Abschließende Leerzeichen entfernen.
 
 #### Rückgabewerte
 
@@ -217,7 +225,11 @@ By default, the component disable the **autocomplete** feature (remembering what
 Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **Autofill** Vorschläge vorschlagen (gespeichertes Login, Adresse oder Zahlungsinformationen). Falls Sie die automatische Füllung vermeiden möchten, können Sie Folgendes versuchen:
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. Wenn Sie die ID leer lassen, verwendet die Komponente eine zufällige ID.
-- Setze `autoComplete="neues Passwort"`: 
+- Setze `autoComplete="neues Passwort"`: jsx Setze `autoComplete="neues Passwort": 
+jsx` Setze `autoComplete="neues Passwort": 
+jsx` Setze `autoComplete="neues Passwort": 
+    jsx` Setze `autoComplete="neues Passwort": 
+        jsx` 
         jsx
         <TextField
         {...params}
@@ -230,10 +242,6 @@ Zusätzlich zur Speicherung der eingegebenen Werte kann der Browser aber auch **
 ### iOS VoiceOver
 
 VoiceOver auf iOS Safari unterstützt das `aria-owns` Attribut nicht sehr gut. You can work around the issue with the `disablePortal` prop.
-
-### TypeScript
-
-To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript könnte diesen Fehler in Zukunft lösen.
 
 ### ListboxComponent
 

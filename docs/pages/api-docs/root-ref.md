@@ -49,14 +49,16 @@ function MyComponent() {
 }
 ```
 
+@deprecated
+
 
 
 ## Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The wrapped element. |
-| <span class="prop-name required">rootRef&nbsp;*</span> | <span class="prop-type">refType.isRequired</span> |  | A ref that points to the first DOM node of the wrapped element. |
+| <span class="prop-name required">children<abbr title="required">*</abbr></span> | <span class="prop-type">element</span> |  | The wrapped element. |
+| <span class="prop-name required">rootRef<abbr title="required">*</abbr></span> | <span class="prop-type">refType.isRequired</span> |  | A ref that points to the first DOM node of the wrapped element. |
 
 The component cannot hold a ref.
 

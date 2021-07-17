@@ -322,12 +322,12 @@ const appList = [
   {
     title: 'Builder Book',
     description:
-      'An open source web app to write and host documentation or sell books. ' +
-      'Built with React, Material-UI, Next, Express, Mongoose, MongoDB.',
+      'Books to learn how to build full-stack, production-ready JavaScript web applications from scratch. ' +
+      'Learn React, Material-UI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    stars: 1576,
+    stars: 1837,
     dateAdded: '2018-01-05',
   },
   {
@@ -619,6 +619,25 @@ const appList = [
     source: 'https://github.com/anselm94/googlekeepclone',
     stars: 14,
     dateAdded: '2020-03-25',
+  },
+  {
+    title: 'Backstage',
+    description:
+      'Backstage is an open platform by Spotify for building developer portals.',
+    image: 'backstage.jpg',
+    link: 'https://backstage.io',
+    source: 'https://github.com/spotify/backstage',
+    stars: 7400,
+    dateAdded: '2020-08-31',
+  },
+  {
+    title: 'LightyearVPN',
+    description:
+      'LightyearVPN is a simple to use, fast and secure VPN software.',
+    image: 'lightyearvpn.jpg',
+    link: 'https://lightyearvpn.com',
+    similarWebVisits: 534,
+    dateAdded: '2020-09-11',
   },
 ];
 

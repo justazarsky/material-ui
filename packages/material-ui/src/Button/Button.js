@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
+import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 
@@ -20,7 +20,7 @@ export const styles = (theme) => ({
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -48,7 +48,7 @@ export const styles = (theme) => ({
   textPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -59,7 +59,7 @@ export const styles = (theme) => ({
   textSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -79,10 +79,10 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
     color: theme.palette.primary.main,
-    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    border: `1px solid ${alpha(theme.palette.primary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.primary.main}`,
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -92,10 +92,10 @@ export const styles = (theme) => ({
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
     color: theme.palette.secondary.main,
-    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    border: `1px solid ${alpha(theme.palette.secondary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -284,6 +284,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       {startIconProp}
     </span>
   );
+
   const endIcon = endIconProp && (
     <span className={clsx(classes.endIcon, classes[`iconSize${capitalize(size)}`])}>
       {endIconProp}
@@ -314,6 +315,12 @@ const Button = React.forwardRef(function Button(props, ref) {
       type={type}
       {...other}
     >
+      {/*
+       * The inner <span> is required to vertically align the children.
+       * Browsers don't support `display: flex` on a <button> element.
+       * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
+       * TODO v5: evaluate if still required for the supported browsers.
+       */}
       <span className={classes.label}>
         {startIcon}
         {children}
@@ -324,15 +331,19 @@ const Button = React.forwardRef(function Button(props, ref) {
 });
 
 Button.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the button.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -345,7 +356,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * If `true`, the button will be disabled.
    */
@@ -356,7 +367,6 @@ Button.propTypes = {
   disableElevation: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `disableRipple` must also be true.
    */
   disableFocusRipple: PropTypes.bool,
   /**
@@ -387,7 +397,7 @@ Button.propTypes = {
    * The size of the button.
    * `small` is equivalent to the dense button styling.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['large', 'medium', 'small']),
   /**
    * Element placed before the children.
    */
@@ -395,11 +405,11 @@ Button.propTypes = {
   /**
    * @ignore
    */
-  type: PropTypes.string,
+  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

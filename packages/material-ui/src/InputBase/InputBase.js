@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
@@ -31,12 +32,8 @@ export const styles = (theme) => {
 
   return {
     '@global': {
-      '@keyframes mui-auto-fill': {
-        from: {},
-      },
-      '@keyframes mui-auto-fill-cancel': {
-        from: {},
-      },
+      '@keyframes mui-auto-fill': {},
+      '@keyframes mui-auto-fill-cancel': {},
     },
     /* Styles applied to the root element. */
     root: {
@@ -98,6 +95,7 @@ export const styles = (theme) => {
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
       animationName: 'mui-auto-fill-cancel',
+      animationDuration: '10ms',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -196,6 +194,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     rows,
     rowsMax,
     rowsMin,
+    maxRows,
+    minRows,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -319,7 +319,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (!isControlled) {
       const element = event.target || inputRef.current;
       if (element == null) {
-        throw new TypeError(
+        throw new MuiError(
           'Material-UI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
             'See https://material-ui.com/r/input-component-ref-interface for more info.',
@@ -373,12 +373,13 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax && !rowsMin) {
+    if (rows && !maxRows && !minRows && !rowsMax && !rowsMin) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
-        rows,
+        minRows: rows || minRows,
         rowsMax,
+        maxRows,
         ...inputProps,
       };
 
@@ -549,6 +550,14 @@ InputBase.propTypes = {
    */
   margin: PropTypes.oneOf(['dense', 'none']),
   /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered.
    */
   multiline: PropTypes.bool,
@@ -607,11 +616,13 @@ InputBase.propTypes = {
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display.
+   * @deprecated Use `maxRows` instead.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Minimum number of rows to display when multiline option is set to true.
+   * Minimum number of rows to display.
+   * @deprecated Use `minRows` instead.
    */
   rowsMin: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

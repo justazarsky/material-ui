@@ -1,34 +1,45 @@
-# Paleta de Cores
+# Paleta
 
 <p class="description">A paleta permite modificar a cor dos componentes para se adequarem à sua marca.</p>
 
-## Intenções
+## Paleta de cores
 
-Uma intenção de cor é um mapeamento de uma paleta para uma determinada intenção dentro da sua aplicação. O tema expõe as seguintes intenções de cores:
+Uma intenção de cor é um mapeamento de uma cor da paleta para uma determinada intenção dentro da sua aplicação. O tema expõe as seguintes cores da paleta (acessível sob `theme.palette`.):
 
-- primário - usado para representar os elementos de interface primários para um usuário.
-- secundário - usado para representar os elementos de interface secundários para um usuário.
-- erro - usado para representar os elementos de interface dos quais o usuário deve estar ciente.
-- aviso - usado para representar ações potencialmente perigosas ou mensagens importantes.
-- info - usado para apresentar ao usuário informações neutras e não necessariamente importantes.
-- success - usado para indicar a conclusão bem-sucedida de uma ação que o usuário acionou.
-
-A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
+- *primary* - usada para representar os elementos de interface primários para um usuário. É a cor mais frequentemente exibida nas telas e componentes do seu aplicativo.
+- *secondary* - usada para representar os elementos de interface secundários para um usuário. Ela fornece mais maneiras de realçar e distinguir o seu produto. Tê-la é opcional.
+- *error* - usada para representar os elementos de interface dos quais o usuário deve estar ciente.
+- *warning* - usada para representar possíveis ações perigosas ou mensagens importantes.
+- *info* - usada para apresentar ao usuário informações neutras e não necessariamente importantes.
+- *success* - usada para indicar a conclusão bem-sucedida de uma ação que o usuário acionou.
 
 Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
 
+## Valores padrão
+
+Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
+
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-### Customização
+A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
 
-Você pode sobrescrever os valores padrão da paleta incluindo um objeto palette como parte do seu tema.
+## Customização
 
-Se algum dos objetos [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) ou [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intenção' são fornecidos, eles substituirão os padrões.
+Você pode sobrescrever os valores padrão da paleta incluindo um objeto de paleta como parte do seu tema. Se algum dos seguintes:
 
-O valor da intenção pode ser um objeto [cor](/customization/color/), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
+- [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
+- [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
+- [`palette.error`](/customization/default-theme/?expand-path=$.palette.error)
+- [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
+- [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
+- [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+
+objetos de cores da paleta são fornecidos, eles substituirão os padrões.
+
+O valor da paleta de cor pode ser um objeto [cor](/customization/color/#2014-material-design-color-palettes), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
 ```ts
-interface PaletteIntention {
+interface PaletteColor {
   light?: string;
   main: string;
   dark?: string;
@@ -36,29 +47,29 @@ interface PaletteIntention {
 }
 ```
 
-**Usando um objeto de cor**
+### Usando um objeto de cor
 
 A maneira mais simples de customizar uma intenção é importar uma ou mais das cores fornecidas e aplicá-las a uma intenção da paleta:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: blue,
   },
 });
 ```
 
-**Fornecendo as cores diretamente**
+### Fornecendo as cores diretamente
 
-Se você deseja fornecer cores mais personalizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
+Se você deseja fornecer cores mais customizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // light: será calculada com base em palette.primary.main,
@@ -83,12 +94,12 @@ const theme = createMuiTheme({
 });
 ```
 
-Como no exemplo acima, se o objeto de intenção contém cores customizadas usando qualquer uma das chaves "main", "light", "dark" ou "contrastText", esses mapas são os seguintes:
+Como no exemplo acima, se o objeto de intenção contém cores customizadas usando qualquer uma das chaves "main", "light", "dark" ou "contrastText", os seguintes comportamentos serão aplicados:
 
 - Se as chaves "dark" e / ou "light" são omitidas, seus valores serão calculados de "main", de acordo com o valor "tonalOffset".
 - Se "contrastText" é omitido, seu valor será calculado para contrastar com "main", de acordo com o valor de "contrastThreshold".
 
-Tanto os valores de "tonalOffset" e "contrastThreshold" poderão ser customizados conforme o necessário. O "tonalOffset" pode ser um valor numérico entre 0 e 1, que será aplicada a ambos variantes claros e escuros, ou um objeto com as variantes clara e escuras especificado a seguir pelo tipo TypeScript:
+Tanto os valores de "tonalOffset" e "contrastThreshold" poderão ser customizados conforme o necessário. O "tonalOffset" pode ser um valor numérico entre 0 e 1, que será aplicado a ambas variantes de claro e escuro, ou um objeto com as variantes claro e escuro especificado a seguir pelo tipo TypeScript:
 
 ```ts
 type PaletteTonalOffset = number | {
@@ -103,18 +114,63 @@ Observe que "contrastThreshold" segue uma curva não linear.
 
 ### Exemplo
 
-{{"demo": "pages/customization/palette/Palette.js"}}
+{{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
-## Ferramenta de cor
+### Adicionando novas cores
 
-Precisa de inspiração? A equipe do Material Design construiu uma incrível [ferramenta de configuração de paleta](/customization/color/#color-tool) para te ajudar.
+Você pode adicionar novas cores dentro e fora da paleta do tema da seguinte maneira:
+
+```js
+import { createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    neutral: {
+      main: '#5c6ac4',
+    },
+  },
+});
+```
+
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+
+```ts
+declare module '@material-ui/core/styles/createTheme' {
+  interface Theme {
+    status: {
+      danger: React.CSSProperties['color'],
+    }
+  }
+  interface ThemeOptions {
+    status: {
+      danger: React.CSSProperties['color']
+    }
+  }
+}
+
+declare module "@material-ui/core/styles/createPalette" {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+  interface PaletteOptions {
+    neutral: PaletteOptions['primary'];
+  }
+}
+```
+
+## Escolhendo cores
+
+Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta de configuração de paleta](/customization/color/#picking-colors) para te ajudar.
 
 ## Modo escuro
 
-O Material-UI vem com dois tipos de paletas, luz (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
+O Material-UI vem com dois tipos de paletas, claro (o padrão) e escuro. Você pode deixar o tema escuro definindo `type: 'dark'`. Embora seja apenas uma alteração no valor de uma propriedade única, internamente ela modifica vários valores da paleta.
 
 ```js
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     type: 'dark',
   },
@@ -136,14 +192,15 @@ Por exemplo, você pode ativar o modo escuro automaticamente:
 ```jsx
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = React.useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
         },
@@ -153,12 +210,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline/>
       <Routes />
     </ThemeProvider>
   );
 }
 ```
-
-## Valores padrão
-
-Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).

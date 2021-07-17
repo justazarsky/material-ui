@@ -1,5 +1,5 @@
 ---
-title: Composant React Carte
+title: Composant React Card
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
@@ -9,7 +9,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 [cartes](https://material.io/design/components/cards.html) sont des surfaces qui affichent du contenu et des actions sur un seul sujet.
 
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+Ils devraient être faciles à analyser pour trouver des informations pertinentes et réalisables. Les éléments, comme le texte et les images, doivent être placés sur eux d'une manière qui indique clairement la hiérarchie.
 
 ## Carte simple
 
@@ -39,7 +39,7 @@ Par défaut, nous utilisons la combinaison d'un élément `<div>` et *background
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
+> ⚠ Quand `component="img"`, CardMedia s'appuie sur `objet-fit` pour centrer l'image. Ce n'est pas supporté par IE 11.
 
 ## Contrôles d'UI
 
@@ -51,4 +51,4 @@ Voici un exemple de carte de contrôle multimédia.
 
 ## Personnalisation
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://deprecate.mui-treasury.com/components/card).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/components/card).

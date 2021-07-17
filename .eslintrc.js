@@ -44,7 +44,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@material-ui/*/*/*', '!@material-ui/core/test-utils/*'],
+        patterns: ['@material-ui/*/*/*', '!@material-ui/utils/macros/*.macro'],
       },
     ],
     'nonblock-statement-body-position': 'error',
@@ -165,6 +165,8 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/tabindex-no-positive': 'off',
 
+        // In tests this is generally intended.
+        'react/button-has-type': 'off',
         // They are accessed to test custom validator implementation with PropTypes.checkPropTypes
         'react/forbid-foreign-prop-types': 'off',
         // components that are defined in test are isolated enough

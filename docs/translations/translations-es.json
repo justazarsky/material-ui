@@ -1,6 +1,6 @@
 {
   "adblock": "Si no te molestan los anuncios sobre tecnología (sin seguimiento o re-mercadeo), y quieres apoyar al Open Source, por favor añade a Material-UI a tu lista blanca en tu bloqueador de anuncios.",
-  "albumDescr": "Diseño responsive de una página tipo álbum / galería con una unidad hero y footer.",
+  "albumDescr": "Diseño responsivo de una página tipo álbum / galería con una unidad hero y footer.",
   "albumTitle": "Álbum",
   "algoliaSearch": "Buscar",
   "blogDescr": "Diseño de una sofisticada página de blog. El soporte para Markdown por cortesía de markdown-to-jsx, pero es fácilmente reemplazable.",
@@ -130,7 +130,7 @@
     "/components/dialogs": "Dialog",
     "/components/dividers": "Divider",
     "/components/drawers": "Cajón",
-    "/components/expansion-panels": "Expansion Panel (panel de expansión)",
+    "/components/accordion": "Accordion (panel de expansión)",
     "/components/feedback": "Opiniones",
     "/components/grid": "Grid",
     "/components/hidden": "Hidden",
@@ -226,7 +226,7 @@
     "/styles": "Estilos",
     "/styles/basics": "Fundamentos",
     "/styles/advanced": "Avanzado",
-    "https://material-ui.com/store/": "Almacén",
+    "https://material-ui.com/store/": "Temas Premium",
     "/components/material-icons": "Material Icons",
     "/components/textarea-autosize": "Auto-dimensionar área de texto",
     "/components/rating": "Rating",
@@ -234,9 +234,9 @@
     "/components/tree-view": "Vista de arbol",
     "/customization/density": "Densidad",
     "/components/button-group": "Grupo de botones",
-    "/components/floating-action-button": "Floating Action Button",
+    "/components/floating-action-button": "Botón de acción flotante",
     "/components/backdrop": "Backdrop",
     "/components/alert": "Alerta",
-    "/components/pagination": "Pagination"
+    "/components/pagination": "Paginación"
   }
 }

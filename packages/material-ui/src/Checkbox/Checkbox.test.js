@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses } from '@material-ui/core/test-utils';
+import { getClasses } from 'test/utils';
 import createMount from 'test/utils/createMount';
-import describeConformance from '../test-utils/describeConformance';
+import describeConformance from 'test/utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Checkbox from './Checkbox';
 import FormControl from '../FormControl';
@@ -114,5 +114,21 @@ describe('<Checkbox />', () => {
         expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
+  });
+
+  it('should allow custom icon font sizes', () => {
+    const fontSizeSpy = spy();
+    const MyIcon = (props) => {
+      const { fontSize, ...other } = props;
+
+      React.useEffect(() => {
+        fontSizeSpy(fontSize);
+      });
+
+      return <div {...other} />;
+    };
+    render(<Checkbox icon={<MyIcon fontSize="foo" />} />);
+
+    expect(fontSizeSpy.args[0][0]).to.equal('foo');
   });
 });

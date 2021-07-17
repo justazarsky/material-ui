@@ -1,5 +1,5 @@
 ---
-title: Chip コンポーネント
+title: React Chip コンポーネント
 components: Chip
 ---
 
@@ -9,7 +9,7 @@ components: Chip
 
 [Chips](https://material.io/design/components/chips.html) 使用すると、ユーザーは情報を入力したり、選択を行ったり、コンテンツをフィルター処理したり、アクションを起動したりできます。
 
-ここで、スタンドアロンコンポーネントとして含まれているが、最も一般的な用途は、 何らかの形の入力ので、ここで示した挙動の一部はコンテキストに表示されません。 
+ここで、スタンドアロンコンポーネントとして含まれているが、最も一般的な用途は、 何らかの形の入力ので、ここで示した挙動の一部はコンテキストに表示されません。
 
 ## Chip
 
@@ -50,4 +50,4 @@ Outlined chipsは代替スタイルを提供します。
 
 ## アクセシビリティ
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+チップが削除またはクリック可能な場合は、タブの順序でボタンになります。 When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

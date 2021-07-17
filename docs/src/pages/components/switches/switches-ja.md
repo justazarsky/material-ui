@@ -1,5 +1,5 @@
 ---
-title: Reactコンポーネントの切り替え
+title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -7,7 +7,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 <p class="description">スイッチは、単一の設定の状態をオンまたはオフに切り替えます。</p>
 
-[スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+[スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
 
 ## Basic switches
 
@@ -21,15 +21,17 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## FormGroupを使用したスイッチ
 
-`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
+`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 `FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
 ## カスタマイズされたスイッチ （Customized switches）
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
+
+🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch) を確認すると良いでしょう。
 
 ## サイズ
 
@@ -45,7 +47,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## When to use
 
-- [Checkboxと スイッチ](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxと スイッチ Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## アクセシビリティ
 

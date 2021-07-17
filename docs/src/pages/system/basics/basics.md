@@ -319,12 +319,12 @@ In this example, the `variant` property supports all the keys present in `theme.
 
 {{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
 
-## CSS property
+## `sx` property	
 
-If you want to support custom CSS values, you can use the `css()` helper.
-It will process the `css` property.
+If you want to support custom CSS values, you can use the `styleFunctionSx()` helper.	
+It will process the `sx` property.	
 
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/basics/SxProp.js", "bg": true}}
 
 ## How it works
 
@@ -348,7 +348,7 @@ In this example, we demonstrate how to reproduce a Banner component.
 - In the React world, [Styled System](https://github.com/jxnblk/styled-system) was one of the first (2017) to promote the style functions.
 It can be used as a generic Box component replacing the atomic CSS helpers as well as helpers to write new components.
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours:
-  - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)
+  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
   - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
   - [Primer Box](https://primer.style/components/docs/Box)
 - The actual implementation and the object responsive API was inspired by the [Smooth-UI's system](https://smooth-ui.smooth-code.com/docs-basics-system).

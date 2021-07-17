@@ -40,7 +40,7 @@
 import { palette } from '@material-ui/system';
 ```
 
-| Import name | Prop      | CSS property      | Theme key                                                        |
+| Nom importé | Propriété | Propriété CSS     | Clé du thème                                                     |
 |:----------- |:--------- |:----------------- |:---------------------------------------------------------------- |
 | `color`     | `color`   | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
 | `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |

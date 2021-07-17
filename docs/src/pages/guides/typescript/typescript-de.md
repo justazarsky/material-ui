@@ -2,7 +2,9 @@
 
 <p class="description">Sie können statische Typisierung zu JavaScript hinzufügen, um die Produktivität und die Codequalität dank TypeScript zu verbessern.</p>
 
-Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) Beispiel an. Eine Mindestversion von TypeScript 2.8 ist erforderlich.
+Material-UI requires a minimum version of TypeScript 3.2.
+
+Schauen Sie sich das [Create React App mit TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) Beispiel an.
 
 In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
 
@@ -146,8 +148,8 @@ const ambiguousStyles = createStyles({
 Da, wenn eine Komponente mit `withStyles(styles)` dekoriert ist, eine spezielle `classes` Eigenschaft injiziert bekommt, möchten Sie die Eigenschaften entsprechend definieren:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
+*/ },
+  button: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });
@@ -174,12 +176,7 @@ const styles = (theme: Theme) => createStyles({
   root: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
-});
-
-interface Props extends WithStyles<typeof styles> {
-  foo: number;
-  bar: boolean;
-}
+  paper: { /* ...
 ```
 
 ### Komponenten dekorieren
@@ -216,17 +213,17 @@ Beim Hinzufügen benutzerdefinierter Eigenschaften zum `Theme` können Sie es we
 Im folgenden Beispiel wird eine `appDrawer` Eigenschaft hinzugefügt, welche in das von `material-ui` exportierte Theme eingefügt wird:
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core/styles/createTheme';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']
       breakpoint: Breakpoint
     }
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -241,10 +238,10 @@ Und eine benutzerdefinierte Theme Generierung mit zusätzlichen Standardoptionen
 **./styles/createMyTheme**:
 
 ```ts
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
-  return createMuiTheme({
+  return createTheme({
     appDrawer: {
       width: 225,
       breakpoint: 'lg',
@@ -297,12 +294,15 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
+function ThirdPartyComponent({ prop1 } : { prop1: string }) {
+  return <div />
+}
+// ...
 ```
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
 
-Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.
+Nicht jede Komponente unterstützt vollständig jeden übergebenen Komponententyp. If you encounter a component that rejects its `component` props in TypeScript please open an issue. Es besteht ein ständiger Aufwand, um dies zu beheben, indem Komponentenstützen generisch gemacht werden.
 
 ## Handling `value` and event handlers
 

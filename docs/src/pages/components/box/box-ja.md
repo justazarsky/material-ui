@@ -1,16 +1,16 @@
 ---
-title: Box Reactコンポーネント
+title: React Box コンポーネント
 ---
 
 # Box
 
 <p class="description">Boxコンポーネントは、CSSユーティリティーのほとんどのニーズに対応するラッパーコンポーネントとして機能します</p>
 
-Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
+Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 これは`@material-ui/core/styles`の[`styled()`](/styles/api/#styled-style-function-component) 関数を使用して作成されています。
 
 ## 例
 
-[The palette](/system/palette/) style関数。
+[palette](/system/palette/) style関数。
 
 ## Material-UI componentsのオーバーライド
 

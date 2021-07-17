@@ -1,5 +1,5 @@
 ---
-title: Checkbox React component
+title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
@@ -41,6 +41,8 @@ Here is an example of customizing the component. You can learn more about this i
 [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox).
 
 ## When to use
 

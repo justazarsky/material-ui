@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& a': {
       display: 'block',
+      marginBottom: theme.spacing(1),
     },
     '& img': {
       display: 'inline-block',
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DiamondSponsors(props) {
   const classes = useStyles();
   const { spot } = props;
+  const theme = useTheme();
   const t = useSelector((state) => state.options.t);
 
   return (
@@ -46,23 +48,40 @@ export default function DiamondSponsors(props) {
       <a
         data-ga-event-category="sponsor"
         data-ga-event-action={spot}
-        data-ga-event-label="sencha"
-        href="https://www.sencha.com/products/extreact/extreact-for-material-ui/?utm_source=materialui&utm_medium=referral&utm_content=product-200429-extreactmaterialui"
+        data-ga-event-label="octopus"
+        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
         rel="noopener noreferrer sponsored"
         target="_blank"
-        style={{ marginLeft: 8, width: 125, height: 35 }}
+        style={{ width: 125, height: 35 }}
       >
         <img
           width="125"
           height="35"
-          src="/static/in-house/sencha-125x35.svg"
-          alt="sencha"
-          title="UI Components for Productive Dev Teams"
+          src={`/static/sponsors/octopus-${theme.palette.type}.png`}
+          alt="octopus"
+          title="Repeatable, reliable deployments"
           loading="lazy"
         />
       </a>
       <a
-        style={{ marginTop: 8 }}
+        data-ga-event-category="sponsor"
+        data-ga-event-action={spot}
+        data-ga-event-label="doit"
+        href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
+        rel="noopener noreferrer sponsored"
+        target="_blank"
+        style={{ width: 125, height: 35 }}
+      >
+        <img
+          width="125"
+          height="35"
+          src={`/static/sponsors/doit-intl.png`}
+          alt="doit-intl"
+          title="Management Platform for Google Cloud and AWS"
+          loading="lazy"
+        />
+      </a>
+      <a
         aria-label={t('diamondSponsors')}
         className={classes.placeholder}
         rel="noopener noreferrer"
